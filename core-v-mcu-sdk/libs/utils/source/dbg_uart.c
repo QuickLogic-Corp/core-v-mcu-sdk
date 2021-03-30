@@ -22,7 +22,7 @@
  *==========================================================*/
 
 #define DBG_UART_C
-#include "appconfig.h"
+#include <SDKConfig.h>
 
 #include <stdio.h>
 #include <stdint.h>

@@ -31,7 +31,7 @@
 //#include <eoss3_hal_uart.h>
 #include "periph-tasks/include/write_uart_task.h"
 //#include "RtosTask.h"
-#include "appconfig.h"
+#include "SDKConfig.h"
 #include <setjmp.h>
 #include "libs/utils/include/dbg_uart.h"
 

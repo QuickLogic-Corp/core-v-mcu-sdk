@@ -14,7 +14,7 @@
  * limitations under the License.
  *==========================================================*/
 
-#include "appconfig.h"
+#include "SDKConfig.h"
 
 #include "libs/cli/include/cli.h"
 #include "string.h"

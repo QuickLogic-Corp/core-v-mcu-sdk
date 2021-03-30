@@ -5,10 +5,10 @@
  *      Author: qlblue
  */
 
-#ifndef APPCONFIG_H_
-#define APPCONFIG_H_
+#ifndef SDKCONFIG_
+#define SDKCONFIG_
 
 #define	UART_ID_CONSOLE	0	// UART_ID to use as console
 #define DEBUG_UART		0	// UART_ID to use for dbg_uart()
 
-#endif /* APPCONFIG_H_ */
+#endif /* SDKCONFIG_ */
