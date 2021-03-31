@@ -20,8 +20,9 @@
 #define __UDMA_UART_DRIVER_H_
 
 #include "stdint.h"
+#include "hal/include/hal_udma_ctrl_reg_defs.h"
 
-uint16_t udma_uart_open (unit8_t uart_id, uint32_t xbaudrate);
-uint16_t udma_uart_writeraw(uint8_t uart_id, uint16_t write_len, uint8_t* write_buffer)
+uint16_t udma_uart_open (uint8_t uart_id, uint32_t xbaudrate);
+uint16_t udma_uart_writeraw(uint8_t uart_id, uint16_t write_len, uint8_t* write_buffer);
 
 #endif //__UDMA_UART_DRIVER_H_

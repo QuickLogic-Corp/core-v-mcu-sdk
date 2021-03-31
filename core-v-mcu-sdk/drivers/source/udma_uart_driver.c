@@ -1,16 +1,27 @@
 
+
+#include "target/core-v-mcu/include/core-v-mcu-config.h"
+#include <periph-tasks/include/write_uart_task.h>
+#include <string.h>
+#include "hal/include/hal_fc_event.h"
+#include "hal/include/hal_udma_ctrl_reg_defs.h"
+
+#include <stdint.h>
 #include "FreeRTOS.h"
 #include "semphr.h"
+#include "target/core-v-mcu/include/core-v-mcu-config.h"
+#include "periph-tasks/include/write_uart_task.h"
+#include "drivers/include/udma_uart_driver.h"
 
-static SemaphoreHandle_t  uart_semaphores[N_UART];
+SemaphoreHandle_t  uart_semaphores[N_UART];
 
-uint16_t udma_uart_open (unit8_t uart_id, uint32_t xbaudrate) {
+uint16_t udma_uart_open (uint8_t uart_id, uint32_t xbaudrate) {
 	uart_channel_t*					puart;
-	volatile UDMA_CTRL_t*		pudma_ctrl = UDMA_CH_ADDR_CTRL;
+	volatile UDMA_CTRL_t*		pudma_ctrl = (UDMA_CTRL_t*)UDMA_CH_ADDR_CTRL;
 
 	/* See if already initialized */
 	if (uart_semaphores[uart_id] != NULL) {
-		return -1;
+		return 1;
 	}
 	/* Set semaphore */
 	uart_semaphores[uart_id] = xSemaphoreCreateBinary();
@@ -33,33 +44,16 @@ uint16_t udma_uart_open (unit8_t uart_id, uint32_t xbaudrate) {
 	
 	return 0;
 }
-	xTasktoNotify[0] = xTaskGetCurrentTaskHandle();
-	for (;;) {
-	xQueueReceive(xPrtQueue[0], &str_struct, portMAX_DELAY);
-	if (str_struct.len == 1) {
-	uart->tx_saddr = &(str_struct.str);
-	} else {
-	uart->tx_saddr = str_struct.str;
-	}
-	uart->tx_size = str_struct.len;
-	uart->tx_cfg = 0x10; //enable the transfer
-	ulTaskNotifyTake(pdTRUE,          /* Clear the  value before exiting. */
-								 portMAX_DELAY );
-	if (str_struct.len != 1)
-	vPortFree(str_struct.str);UDMA_CTRL_t*		pudma_ctrl;
 
-	}
-}
 
 uint16_t udma_uart_writeraw(uint8_t uart_id, uint16_t write_len, uint8_t* write_buffer) {
-	uart_channel_t*					puart = (uart_channel_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);;
+	uart_channel_t*					puart = (uart_channel_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
 
-	puart->tx_saddr = &(write_buffer);
+	puart->tx_saddr = write_buffer;
 	puart->tx_size = write_len;
 	puart->tx_cfg = 0x10; //enable the transfer
-	if( xSemaphoreTake( xSemaphore, 10000 ) == pdTRUE ) {
-		return 0;
-	} else {
-		return -1;
+	if( xSemaphoreTake( uart_semaphores[uart_id], 10000 ) != pdTRUE ) {
+		return 1;
 	}
+	return 0;
 }

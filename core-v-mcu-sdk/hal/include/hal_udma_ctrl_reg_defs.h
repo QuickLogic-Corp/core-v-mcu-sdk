@@ -4,6 +4,8 @@
 //
 //---------------------------------//
 
+#ifndef __hal_udma_CTRL_H_
+#define __hal_udma_CTRL_H_
 typedef struct {
   union {
     __IO uint32_t REG_CG;     // Offset = 0x0000
@@ -53,3 +55,5 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+
+#endif // __hal_udma_CTRL_H_

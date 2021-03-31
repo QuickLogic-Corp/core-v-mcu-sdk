@@ -46,7 +46,7 @@ void pi_fc_event_handler_init(uint32_t fc_event_irq);
  */
 void fc_soc_event_handler(void);
 
-void pi_fc_event_handler_set(uint32_t event_id, pi_fc_event_handler_t event_handler);
+void pi_fc_event_handler_set(uint32_t event_id, pi_fc_event_handler_t event_handler, SemaphoreHandle_t semaphoreHandle);
 
 void pi_fc_event_handler_clear(uint32_t event_id);
 

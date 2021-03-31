@@ -94,8 +94,8 @@ void prvWriteUart0Task (void *pvParameters)
 	xPrtQueue[0] = xQueueCreate(PrintQueueLength, sizeof(print_t));
 	configASSERT(xPrtQueue[0]);
     /* Set handlers. */
-    pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_RX(0), ISR_uart0_handler);
-    pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_TX(0), ISR_uart0_handler);
+    pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_RX(0), ISR_uart0_handler, NULL);
+    pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_TX(0), ISR_uart0_handler, NULL);
     /* Enable SOC events propagation to FC. */
     hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_RX(0));
     hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_TX(0));
@@ -136,8 +136,8 @@ void prvWriteUart1Task (void *pvParameters)
 	xPrtQueue[1] = xQueueCreate(PrintQueueLength, sizeof(print_t));
 	configASSERT(xPrtQueue[1]);
     /* Set handlers. */
-    pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_RX(1), ISR_uart1_handler);
-    pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_TX(1), ISR_uart1_handler);
+    pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_RX(1), ISR_uart1_handler, NULL);
+    pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_TX(1), ISR_uart1_handler, NULL);
     /* Enable SOC events propagation to FC. */
     hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_RX(1));
     hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_TX(1));
