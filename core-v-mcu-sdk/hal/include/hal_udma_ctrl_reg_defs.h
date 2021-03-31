@@ -6,6 +6,7 @@
 
 #ifndef __hal_udma_CTRL_H_
 #define __hal_udma_CTRL_H_
+#include "target/core-v-mcu/include/core_pulp.h"
 typedef struct {
   union {
     __IO uint32_t REG_CG;     // Offset = 0x0000
