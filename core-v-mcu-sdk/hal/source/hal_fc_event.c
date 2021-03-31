@@ -28,6 +28,8 @@
 //#include "pmsis/implem/hal/hal.h"
 #include "hal/include/hal_soc_eu_periph.h"
 //#include "pmsis/implem/drivers/pmsis_it.h"
+#include "FreeRTOS.h"
+#include "semphr.h"
 
 /*******************************************************************************
  * Variables, macros, structures,... definition
@@ -39,7 +41,8 @@
 
 static void fc_event_null_event(void *arg);
 
-static volatile pi_fc_event_handler_t fc_event_handlers[NB_SOC_EVENTS];
+static volatile pi_fc_event_handler_t fc_event_handlers[SOC_EU_NB_FC_EVENTS];
+static volatile SemaphoreHandle_t  fc_event_semaphores[SOC_EU_NB_FC_EVENTS];
 
 static void fc_event_null_event(void *arg)
 {
@@ -50,7 +53,7 @@ void pi_fc_event_handler_init(uint32_t fc_event_irq)
 {
 	/* TODO: fix this mess, that should be 8 32-bit writes */
 	/* open the mask for fc_soc_event irq */
-	for (int i = 0; i < NB_SOC_EVENTS; i++) {
+	for (int i = 0; i < SOC_EU_NB_FC_EVENTS; i++) {
 		pi_fc_event_handler_clear(i);
 	}
 	/* NVIC_SetVector(fc_event_irq, (uint32_t)__handler_wrapper_light_fc_event_handler);*/
@@ -58,29 +61,42 @@ void pi_fc_event_handler_init(uint32_t fc_event_irq)
 }
 
 void pi_fc_event_handler_set(uint32_t event_id,
-			     pi_fc_event_handler_t event_handler)
+			     pi_fc_event_handler_t event_handler,
+					SemaphoreHandle_t semaphoreHandle)
 {
-	fc_event_handlers[event_id] = event_handler;
+	if (event_handler != NULL) {
+		fc_event_handlers[event_id] = event_handler;
+	}
+	if (semaphoreHandle != NULL) {
+		fc_event_semaphores[event_id] = semaphoreHandle;
+	}
 }
 
 void pi_fc_event_handler_clear(uint32_t event_id)
 {
-	fc_event_handlers[event_id] =
-		(pi_fc_event_handler_t)fc_event_null_event;
+	fc_event_handlers[event_id] = (pi_fc_event_handler_t)fc_event_null_event;
+	fc_event_semaphores[event_id] = NULL;
 }
 
 /* TODO: Use Eric's FIRQ ABI */
 __attribute__((section(".text"))) void fc_soc_event_handler(void)
 {
+	static signed BaseType_t xHigherPriorityTaskWoken;
 	/* Pop one event element from the FIFO */
 	/* TODO: don't use it like this */
 	__asm volatile( "csrs mie, %0" :: "r"(0x800) );
-	uint32_t event = NVIC->FIFO;
+	uint32_t event_id = NVIC->FIFO;
 
-	event &= 0xFF;
+	event_id &= 0xFF;
 
 	/* redirect to handler with jump table */
-	if (fc_event_handlers[event] != NULL) {
-		fc_event_handlers[event]((void *)event);
+	if (fc_event_handlers[event_id] != NULL) {
+		fc_event_handlers[event_id]((void *)event);
+	}
+	if (fc_event_semaphores[event_id] != NULL) {
+		/* Unblock the task by releasing the semaphore. */
+    xSemaphoreGiveFromISR( fc_event_handlers[event_id], &xHigherPriorityTaskWoken );
+		fc_event_handlers[event_id]((void *)event);
+		portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
 	}
 }
