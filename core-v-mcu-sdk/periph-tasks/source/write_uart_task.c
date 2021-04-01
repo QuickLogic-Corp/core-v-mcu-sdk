@@ -88,7 +88,7 @@ void prvWriteUart0Task (void *pvParameters)
 {
 	uart_channel_t*	uart;
 	print_t 				str_struct;
-	volatile UDMA_CTRL_t*		pudma_ctrl = UDMA_CH_ADDR_CTRL;
+	volatile UdmaCtrl_t*		pudma_ctrl = UDMA_CH_ADDR_CTRL;
 	volatile uint32_t *udma_cg = (uint32_t*)UDMA_CH_ADDR_CTRL;
 	
 	xPrtQueue[0] = xQueueCreate(PrintQueueLength, sizeof(print_t));
@@ -100,7 +100,7 @@ void prvWriteUart0Task (void *pvParameters)
     hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_RX(0));
     hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_TX(0));
 
-	pudma_ctrl->REG_CG |= UDMA_CTRL_UART0_CLKEN;
+	pudma_ctrl->reg_cg |= UDMA_CTRL_UART0_CLKEN;
 	uart = (uart_channel_t*)UDMA_CH_ADDR_UART0;
 	uart->setup = (5000000/115200) << 16 | // Baud rate divisor
 			(3 << 1) | // 8-bits
@@ -120,7 +120,7 @@ void prvWriteUart0Task (void *pvParameters)
         ulTaskNotifyTake(pdTRUE,          /* Clear the  value before exiting. */
                          portMAX_DELAY );
         if (str_struct.len != 1)
-        	vPortFree(str_struct.str);UDMA_CTRL_t*		pudma_ctrl;
+        	vPortFree(str_struct.str);
 
 	}
 }
@@ -129,7 +129,7 @@ void prvWriteUart1Task (void *pvParameters)
 {
 	uart_channel_t *uart;
 	print_t str_struct;
-	volatile UDMA_CTRL_t*		pudma_ctrl = UDMA_CH_ADDR_CTRL;
+	volatile UdmaCtrl_t*		pudma_ctrl = UDMA_CH_ADDR_CTRL;
 	volatile uint32_t *udma_cg = (uint32_t*)UDMA_CH_ADDR_CTRL;
 
 
@@ -142,7 +142,7 @@ void prvWriteUart1Task (void *pvParameters)
     hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_RX(1));
     hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_TX(1));
 
-    pudma_ctrl->REG_CG |= UDMA_CTRL_UART1_CLKEN;
+    pudma_ctrl->reg_cg |= UDMA_CTRL_UART1_CLKEN;
 
 
 	uart = (uart_channel_t*)UDMA_CH_ADDR_UART1;
