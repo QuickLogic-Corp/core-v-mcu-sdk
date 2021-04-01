@@ -56,18 +56,89 @@ uint16_t udma_uart_open (uint8_t uart_id, uint32_t xbaudrate) {
 	return 0;
 }
 
-
+int fred;
 uint16_t udma_uart_writeraw(uint8_t uart_id, uint16_t write_len, uint8_t* write_buffer) {
 	UdmaUart_t*				puart = (UdmaUart_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
+	int xv = 0;
+	int xxv;
 
 	SemaphoreHandle_t xSemaphoreHandle = uart_semaphores_tx[uart_id];
 	if( xSemaphoreTake( xSemaphoreHandle, 1000000 ) != pdTRUE ) {
 			return 1;
 		}
 
+	xxv = puart->tx_cfg;
+	fred = xxv | 0xF00000;
+	while (puart->status_b.tx_busy) {
+		xv++;
+	}
+
+	if (xv != 0) {
+		xv = 0;
+	}
+	if (xxv != 0) {
+		fred = 0;
+	}
+
+	if (puart->tx_cfg_b.pending) {
+			xv = 2;
+		}
+
 	puart->tx_saddr = write_buffer;
 	puart->tx_size = write_len;
 	puart->tx_cfg_b.en = 1; //enable the transfer
 
+	return 0;
+}
+
+uint16_t udma_uart_read(uint8_t uart_id, uint16_t read_len, uint8_t* read_buffer) {
+	uint16_t ret = 0;
+	uint8_t last_char = 0;
+	UdmaUart_t*				puart = (UdmaUart_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
+
+
+	while ( (ret < (read_len - 2)) && (last_char != 0xd)) {
+		if (puart->valid_b.rx_data_valid == 1) {
+			last_char = (uint8_t)(puart->data_b.rx_data & 0xff);
+			if (last_char == 0xd)  // if cr add
+				read_buffer[ret++] = 0xa;  // linefeed
+			read_buffer[ret++] = last_char;
+		}
+	}
+	read_buffer[ret] = '\0';
+	return ret--;
+}
+
+uint16_t udma_uart_readraw(uint8_t uart_id, uint16_t read_len, uint8_t* read_buffer) {
+	uint16_t ret = 0;
+	uint8_t last_char = 0;
+	UdmaUart_t*				puart = (UdmaUart_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
+
+	while ( ret < read_len ) {
+		if (puart->valid_b.rx_data_valid == 1) {
+			last_char = (uint8_t)(puart->data_b.rx_data & 0xff);
+			read_buffer[ret++] = last_char;
+		}
+	}
+	return ret--;
+}
+
+uint16_t udma_uart_getchar(uint8_t uart_id) {
+	UdmaUart_t*				puart = (UdmaUart_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
+
+	while (puart->valid_b.rx_data_valid == 0) {
+	}
+	return (puart->data_b.rx_data & 0xff);
+}
+
+uint16_t udma_uart_control(uint8_t uart_id, udma_uart_control_type_t control_type, void* pparam) {
+	UdmaUart_t*				puart = (UdmaUart_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
+
+	switch(control_type) {
+	case kDataValid:
+		return puart->valid_b.rx_data_valid;
+	default:
+		return 0xFFFF;
+	}
 	return 0;
 }

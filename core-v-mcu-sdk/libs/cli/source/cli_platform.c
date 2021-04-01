@@ -29,7 +29,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 //#include <eoss3_hal_uart.h>
-#include "periph-tasks/include/write_uart_task.h"
+#include "drivers/include/udma_uart_driver.h"
 //#include "RtosTask.h"
 #include "SDKConfig.h"
 #include <setjmp.h>
@@ -88,21 +88,21 @@ int CLI_timeout_expired( intptr_t token, int timeout )
 
 void CLI_putc_raw(int c)
 {
-  vUartTxChar( UART_ID_CONSOLE, c);
+	udma_uart_writeraw(UART_ID_CONSOLE, 1, (uint8_t*) &c);
 }
 
 int CLI_getkey_raw( int timeout )
 {
   intptr_t tstart;
-  int x;
+  uint16_t x;
   
   tstart = CLI_timeout_start();
   for(;;){
     //uart_rx_wait( UART_ID_CONSOLE, timeout );
-    if( ucUartCharAvailable( UART_ID_CONSOLE ) ){
-      x = xUartRxChar( UART_ID_CONSOLE  );
+    if( udma_uart_control( UART_ID_CONSOLE , kDataValid, NULL) ){
+      x = udma_uart_getchar( UART_ID_CONSOLE );
       if (x != 0)							// FIXME: why do we get nullls?
-    	  return x;
+    	  return (int)x;
     }
     /* no key */
     if( CLI_timeout_expired(tstart, timeout ) ){

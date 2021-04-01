@@ -134,7 +134,7 @@ void dbg_ch_raw( int c )
         }
         break;
     default:
-        vUartTxChar(_dbg_uart_id,c);
+    	udma_uart_writeraw(_dbg_uart_id, 1, &c);
     }
 }
 
