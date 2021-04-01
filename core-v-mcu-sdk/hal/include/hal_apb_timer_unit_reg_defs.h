@@ -129,7 +129,7 @@ typedef struct {
 
   // Offset = 0x0024
   union {
-    __IO uint32_t TIMER_RESET_HI;
+    __IO uint32_t timer_reset_hi;
     struct {
       __IO uint32_t  timer_reset_hi :  1;
     } timer_reset_hi_b;

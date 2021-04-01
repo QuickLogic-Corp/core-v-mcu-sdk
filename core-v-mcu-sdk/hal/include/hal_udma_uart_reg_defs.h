@@ -145,7 +145,7 @@ typedef struct {
 
   // Offset = 0x0034
   union {
-    __IO uint32_t DATA;
+    __IO uint32_t data;
     struct {
       __IO uint32_t  rx_data    :  8;
     } data_b;

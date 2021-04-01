@@ -108,7 +108,7 @@ typedef struct {
 
   // Offset = 0x0400
   union {
-    __IO uint32_t IO_CTRL;
+    __IO uint32_t io_ctrl;
     struct {
       __IO uint32_t  mux        :  2;
       __IO uint32_t             :  6;

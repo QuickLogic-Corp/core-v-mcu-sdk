@@ -197,7 +197,7 @@ typedef struct {
 
   // Offset = 0x0024
   union {
-    __IO uint32_t REG_FIFO;
+    __IO uint32_t reg_fifo;
     struct {
       __IO uint32_t  event_id   :  8;
     } reg_fifo_b;

@@ -102,7 +102,7 @@ typedef struct {
 
   // Offset = 0x0024
   union {
-    __IO uint32_t SETUP;
+    __IO uint32_t setup;
     struct {
       __IO uint32_t  reset      :  1;
     } setup_b;

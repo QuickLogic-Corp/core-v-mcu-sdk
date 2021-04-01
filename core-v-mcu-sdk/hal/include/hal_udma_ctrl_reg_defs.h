@@ -54,7 +54,7 @@ typedef struct {
 
   // Offset = 0x0008
   union {
-    __IO uint32_t REG_RST;
+    __IO uint32_t reg_rst;
     struct {
       __IO uint32_t  periph_reset : 32;
     } reg_rst_b;
