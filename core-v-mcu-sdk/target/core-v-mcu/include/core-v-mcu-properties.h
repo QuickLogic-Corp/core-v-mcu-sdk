@@ -103,15 +103,15 @@
 #define UDMA_PERIPH_SIZE            (1 << UDMA_PERIPH_SIZE_LOG2)
 
 /* UDMA peripherals ID, this maps to PER_ID_* in udma_subsystem.sv */
-#define UDMA_SPIM_ID(id)            (1   + (id))
+//#define UDMA_SPIM_ID(id)            (1   + (id))
 /* #define UDMA_HYPER_ID(id)           (3   + (id)) */
-#define UDMA_UART_ID(id)            (0   + (id))
-#define UDMA_I2C_ID(id)             (2   + (id))
+//#define UDMA_UART_ID(id)            (0   + (id))
+//#define UDMA_I2C_ID(id)             (2   + (id))
 /* #define UDMA_DMACPY_ID(id)          (7   + (id)) */
-#define ARCHI_UDMA_FILTER_ID(id)          (7  + (id))
-#define UDMA_I2S_ID(id)             (5  + (id))
-#define UDMA_CPI_ID(id)             (6  + (id))
-#define UDMA_SDIO_ID(id)            (4   + (id))
+//#define ARCHI_UDMA_FILTER_ID(id)          (7  + (id))
+////#define UDMA_I2S_ID(id)             (5  + (id))
+//#define UDMA_CPI_ID(id)             (6  + (id))
+//#define UDMA_SDIO_ID(id)            (4   + (id))
 
 
 /* Pads & GPIO. */

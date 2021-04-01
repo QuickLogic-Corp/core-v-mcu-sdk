@@ -42,7 +42,7 @@
 static void fc_event_null_event(void *arg);
 
 static volatile pi_fc_event_handler_t fc_event_handlers[SOC_EU_NB_FC_EVENTS];
-static volatile SemaphoreHandle_t  fc_event_semaphores[SOC_EU_NB_FC_EVENTS];
+static SemaphoreHandle_t  fc_event_semaphores[SOC_EU_NB_FC_EVENTS];
 
 static void fc_event_null_event(void *arg)
 {
@@ -78,10 +78,12 @@ void pi_fc_event_handler_clear(uint32_t event_id)
 	fc_event_semaphores[event_id] = NULL;
 }
 
+//static signed BaseType_t xHigherPriorityTaskWoken;
+static uint32_t xHigherPriorityTaskWoken;
 /* TODO: Use Eric's FIRQ ABI */
 __attribute__((section(".text"))) void fc_soc_event_handler(void)
 {
-	static signed BaseType_t xHigherPriorityTaskWoken;
+	//static signed BaseType_t xHigherPriorityTaskWoken;
 	/* Pop one event element from the FIFO */
 	/* TODO: don't use it like this */
 	__asm volatile( "csrs mie, %0" :: "r"(0x800) );
@@ -91,12 +93,12 @@ __attribute__((section(".text"))) void fc_soc_event_handler(void)
 
 	/* redirect to handler with jump table */
 	if (fc_event_handlers[event_id] != NULL) {
-		fc_event_handlers[event_id]((void *)event);
+		fc_event_handlers[event_id]((void *)event_id);
 	}
 	if (fc_event_semaphores[event_id] != NULL) {
 		/* Unblock the task by releasing the semaphore. */
-    xSemaphoreGiveFromISR( fc_event_handlers[event_id], &xHigherPriorityTaskWoken );
-		fc_event_handlers[event_id]((void *)event);
+		SemaphoreHandle_t xSemaphoreHandle = fc_event_semaphores[event_id];
+		xSemaphoreGiveFromISR( xSemaphoreHandle, &xHigherPriorityTaskWoken );
 		portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
 	}
 }

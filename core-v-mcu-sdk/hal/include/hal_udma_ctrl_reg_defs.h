@@ -88,3 +88,4 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
 }
 
 #endif __UDMA_CTRL_H_
+
