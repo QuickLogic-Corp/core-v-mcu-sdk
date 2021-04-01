@@ -5,6 +5,7 @@
 #include <string.h>
 #include "hal/include/hal_fc_event.h"
 #include "hal/include/hal_udma_ctrl_reg_defs.h"
+#include "hal/include/hal_udma_uart_reg_defs.h"
 
 #include <stdint.h>
 #include "FreeRTOS.h"
@@ -17,7 +18,7 @@ SemaphoreHandle_t  uart_semaphores_rx[N_UART];
 SemaphoreHandle_t  uart_semaphores_tx[N_UART];
 
 uint16_t udma_uart_open (uint8_t uart_id, uint32_t xbaudrate) {
-	uart_channel_t*					puart;
+	UDMA_UART_t*				puart;
 	volatile UDMA_CTRL_t*		pudma_ctrl = (UDMA_CTRL_t*)UDMA_CH_ADDR_CTRL;
 
 	/* See if already initialized */
@@ -45,28 +46,28 @@ uint16_t udma_uart_open (uint8_t uart_id, uint32_t xbaudrate) {
 	hal_soc_eu_set_fc_mask(SOC_EVENT_UDMA_UART_TX(uart_id));
 
 	/* configure */
-	puart = (uart_channel_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
-	puart->setup = (5000000/xbaudrate) << 16 | // Baud rate divisor
-	(3 << 1) | // 8-bits
-	(1 << 4) | // use polling on read
-	(1 << 8) | // tx enable
-	(1 << 9) ; // rx enable
+	puart = (UDMA_UART_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
+	puart->UART_SETUP_b.DIV = (uint16_t)(5000000/xbaudrate);
+	puart->UART_SETUP_b.BITS = 3; // 8-bits
+	puart->UART_SETUP_b.RX_POLLING_EN = 1;
+	puart->UART_SETUP_b.EN_TX = 1;
+	puart->UART_SETUP_b.EN_RX = 1;
 	
 	return 0;
 }
 
 
 uint16_t udma_uart_writeraw(uint8_t uart_id, uint16_t write_len, uint8_t* write_buffer) {
-	uart_channel_t*					puart = (uart_channel_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
+	UDMA_UART_t*				puart = (UDMA_UART_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
 
 	SemaphoreHandle_t xSemaphoreHandle = uart_semaphores_tx[uart_id];
 	if( xSemaphoreTake( xSemaphoreHandle, 1000000 ) != pdTRUE ) {
 			return 1;
 		}
 
-	puart->tx_saddr = write_buffer;
-	puart->tx_size = write_len;
-	puart->tx_cfg = 0x10; //enable the transfer
+	puart->TX_SADDR = write_buffer;
+	puart->TX_SIZE = write_len;
+	puart->TX_CFG_b.EN = 1; //enable the transfer
 
 	return 0;
 }
