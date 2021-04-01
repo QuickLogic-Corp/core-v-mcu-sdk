@@ -56,7 +56,6 @@ uint16_t udma_uart_open (uint8_t uart_id, uint32_t xbaudrate) {
 	return 0;
 }
 
-int fred;
 uint16_t udma_uart_writeraw(uint8_t uart_id, uint16_t write_len, uint8_t* write_buffer) {
 	UdmaUart_t*				puart = (UdmaUart_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
 	int xv = 0;
@@ -67,22 +66,8 @@ uint16_t udma_uart_writeraw(uint8_t uart_id, uint16_t write_len, uint8_t* write_
 			return 1;
 		}
 
-	xxv = puart->tx_cfg;
-	fred = xxv | 0xF00000;
-	while (puart->status_b.tx_busy) {
-		xv++;
+	while (puart->status_b.tx_busy) {  // ToDo: Why is this necessary?  Thought the semaphore should have protected
 	}
-
-	if (xv != 0) {
-		xv = 0;
-	}
-	if (xxv != 0) {
-		fred = 0;
-	}
-
-	if (puart->tx_cfg_b.pending) {
-			xv = 2;
-		}
 
 	puart->tx_saddr = write_buffer;
 	puart->tx_size = write_len;
