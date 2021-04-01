@@ -59,7 +59,7 @@ typedef struct {
       __IO uint32_t  periph_reset : 32;
     } reg_rst_b;
   };
-} udma_ctrl_t;
+} UdmaCtrl_t;
 
 
 #define REG_REG_CG                     0x000

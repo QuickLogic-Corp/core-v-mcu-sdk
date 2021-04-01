@@ -41,13 +41,13 @@ typedef struct {
       __IO uint32_t  n_cores    : 16;
     } info_b;
   };
-  __I uint32_t    RESERVED0[28];
+  __I uint32_t    reserved0[28];
 
   // Offset = 0x0074
   union {
     __IO uint32_t jtagreg;
   };
-  __I uint32_t    RESERVED1[10];
+  __I uint32_t    reserved1[10];
 
   // Offset = 0x00a0
   union {
@@ -57,7 +57,7 @@ typedef struct {
       __IO uint32_t  eoc        :  1;
     } corestatus_b;
   };
-  __I uint32_t    RESERVED2[7];
+  __I uint32_t    reserved2[7];
 
   // Offset = 0x00c0
   union {
@@ -77,13 +77,13 @@ typedef struct {
   union {
     __IO uint32_t clksel;
   };
-  __I uint32_t    RESERVED3[3];
+  __I uint32_t    reserved3[3];
 
   // Offset = 0x00d8
   union {
     __IO uint32_t clk_div_clu;
   };
-  __I uint32_t    RESERVED4[1];
+  __I uint32_t    reserved4[1];
 
   // Offset = 0x00e0
   union {
@@ -104,7 +104,7 @@ typedef struct {
   union {
     __IO uint32_t enable_in_out_efpga;
   };
-  __I uint32_t    RESERVED5[196];
+  __I uint32_t    reserved5[196];
 
   // Offset = 0x0400
   union {
@@ -115,7 +115,7 @@ typedef struct {
       __IO uint32_t  cfg        :  6;
     } io_ctrl_b;
   };
-} soc_ctrl_t;
+} SocCtrl_t;
 
 
 #define REG_INFO                       0x0000

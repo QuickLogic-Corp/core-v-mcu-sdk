@@ -60,7 +60,7 @@ typedef struct {
       __IO uint32_t  clr        :  1;
     } rx_cfg_b;
   };
-  __I uint32_t    RESERVED0[1];
+  __I uint32_t    reserved0[1];
 
   // Offset = 0x0010
   union {
@@ -89,7 +89,7 @@ typedef struct {
       __IO uint32_t  clr        :  1;
     } tx_cfg_b;
   };
-  __I uint32_t    RESERVED1[1];
+  __I uint32_t    reserved1[1];
 
   // Offset = 0x0020
   union {
@@ -107,7 +107,7 @@ typedef struct {
       __IO uint32_t  reset      :  1;
     } setup_b;
   };
-} udma_i2c_t;
+} UdmaI2c_t;
 
 
 #define REG_RX_SADDR                   0x00

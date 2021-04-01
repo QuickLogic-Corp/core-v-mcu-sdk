@@ -134,7 +134,7 @@ typedef struct {
       __IO uint32_t  timer_reset_hi :  1;
     } timer_reset_hi_b;
   };
-} apb_timer_unit_t;
+} ApbTimerUnit_t;
 
 
 #define REG_CFG_REG_LO                 0x000

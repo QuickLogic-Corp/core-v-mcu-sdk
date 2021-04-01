@@ -202,7 +202,7 @@ typedef struct {
       __IO uint32_t  event_id   :  8;
     } reg_fifo_b;
   };
-} apb_interrupt_cntrl_t;
+} ApbInterruptCntrl_t;
 
 
 #define REG_REG_MASK                   0x000
