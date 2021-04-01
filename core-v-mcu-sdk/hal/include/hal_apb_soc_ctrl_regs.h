@@ -35,74 +35,74 @@ typedef struct {
 
   // Offset = 0x0000
   union {
-    __IO uint32_t INFO;
+    __IO uint32_t info;
     struct {
-      __IO uint32_t  N_CLUSTERS : 16;
-      __IO uint32_t  N_CORES    : 16;
-    } INFO_b;
+      __IO uint32_t  n_clusters : 16;
+      __IO uint32_t  n_cores    : 16;
+    } info_b;
   };
   __I uint32_t    RESERVED0[28];
 
   // Offset = 0x0074
   union {
-    __IO uint32_t JTAGREG;
+    __IO uint32_t jtagreg;
   };
   __I uint32_t    RESERVED1[10];
 
   // Offset = 0x00a0
   union {
-    __IO uint32_t CORESTATUS;
+    __IO uint32_t corestatus;
     struct {
-      __IO uint32_t  STATUS     : 31;
-      __IO uint32_t  EOC        :  1;
-    } CORESTATUS_b;
+      __IO uint32_t  status     : 31;
+      __IO uint32_t  eoc        :  1;
+    } corestatus_b;
   };
   __I uint32_t    RESERVED2[7];
 
   // Offset = 0x00c0
   union {
-    __IO uint32_t CS_RO;
+    __IO uint32_t cs_ro;
     struct {
-      __IO uint32_t  STATUS     : 31;
-      __IO uint32_t  EOC        :  1;
-    } CS_RO_b;
+      __IO uint32_t  status     : 31;
+      __IO uint32_t  eoc        :  1;
+    } cs_ro_b;
   };
 
   // Offset = 0x00c4
   union {
-    __IO uint32_t BOOTSEL;
+    __IO uint32_t bootsel;
   };
 
   // Offset = 0x00c8
   union {
-    __IO uint32_t CLKSEL;
+    __IO uint32_t clksel;
   };
   __I uint32_t    RESERVED3[3];
 
   // Offset = 0x00d8
   union {
-    __IO uint32_t CLK_DIV_CLU;
+    __IO uint32_t clk_div_clu;
   };
   __I uint32_t    RESERVED4[1];
 
   // Offset = 0x00e0
   union {
-    __IO uint32_t SEL_CLK_DC_FIFO_EFPGA;
+    __IO uint32_t sel_clk_dc_fifo_efpga;
   };
 
   // Offset = 0x00e4
   union {
-    __IO uint32_t CLK_GATING_DC_FIFO_EFPGA;
+    __IO uint32_t clk_gating_dc_fifo_efpga;
   };
 
   // Offset = 0x00e8
   union {
-    __IO uint32_t RESET_TYPE1_EFPGA;
+    __IO uint32_t reset_type1_efpga;
   };
 
   // Offset = 0x00ec
   union {
-    __IO uint32_t ENABLE_IN_OUT_EFPGA;
+    __IO uint32_t enable_in_out_efpga;
   };
   __I uint32_t    RESERVED5[196];
 
@@ -110,12 +110,12 @@ typedef struct {
   union {
     __IO uint32_t IO_CTRL;
     struct {
-      __IO uint32_t  MUX        :  2;
+      __IO uint32_t  mux        :  2;
       __IO uint32_t             :  6;
-      __IO uint32_t  CFG        :  6;
-    } IO_CTRL_b;
+      __IO uint32_t  cfg        :  6;
+    } io_ctrl_b;
   };
-} SOC_CTRL_t;
+} soc_ctrl_t;
 
 
 #define REG_INFO                       0x0000
