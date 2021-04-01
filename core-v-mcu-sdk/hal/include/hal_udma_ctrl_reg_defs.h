@@ -78,6 +78,8 @@ typedef struct {
 #define   REG_REG_RST_PERIPH_RESET_LSB             0
 #define   REG_REG_RST_PERIPH_RESET_MASK            0xffffffff
 
+#ifndef __REGFIELD_OPS_
+#define __REGFIELD_OPS_
 static inline uint32_t regfield_read(uint32_t reg, uint32_t mask, uint32_t lsb) {
   return (reg >> lsb) & mask;
 }
@@ -86,6 +88,6 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+#endif  // __REGFIELD_OPS_
 
-#endif __UDMA_CTRL_H_
-
+#endif // __UDMA_CTRL_H_

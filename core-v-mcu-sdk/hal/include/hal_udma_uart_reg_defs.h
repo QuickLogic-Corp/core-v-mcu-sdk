@@ -222,6 +222,8 @@ typedef struct {
 #define   REG_DATA_RX_DATA_LSB                     0
 #define   REG_DATA_RX_DATA_MASK                    0xff
 
+#ifndef __REGFIELD_OPS_
+#define __REGFIELD_OPS_
 static inline uint32_t regfield_read(uint32_t reg, uint32_t mask, uint32_t lsb) {
   return (reg >> lsb) & mask;
 }
@@ -230,5 +232,6 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+#endif  // __REGFIELD_OPS_
 
-#endif __UDMA_UART_H_
+#endif // __UDMA_UART_H_

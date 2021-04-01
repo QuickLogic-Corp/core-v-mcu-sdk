@@ -147,6 +147,8 @@ typedef struct {
 #define   REG_IO_CTRL_MUX_LSB                      0
 #define   REG_IO_CTRL_MUX_MASK                     0x3
 
+#ifndef __REGFIELD_OPS_
+#define __REGFIELD_OPS_
 static inline uint32_t regfield_read(uint32_t reg, uint32_t mask, uint32_t lsb) {
   return (reg >> lsb) & mask;
 }
@@ -155,5 +157,6 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+#endif  // __REGFIELD_OPS_
 
-#endif __SOC_CTRL_H_
+#endif // __SOC_CTRL_H_

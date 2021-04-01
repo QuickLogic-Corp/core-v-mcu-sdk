@@ -208,6 +208,8 @@ typedef struct {
 #define   REG_TIMER_RESET_HI_TIMER_RESET_HI_LSB    0
 #define   REG_TIMER_RESET_HI_TIMER_RESET_HI_MASK   0x1
 
+#ifndef __REGFIELD_OPS_
+#define __REGFIELD_OPS_
 static inline uint32_t regfield_read(uint32_t reg, uint32_t mask, uint32_t lsb) {
   return (reg >> lsb) & mask;
 }
@@ -216,5 +218,6 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+#endif  // __REGFIELD_OPS_
 
-#endif __APB_TIMER_UNIT_H_
+#endif // __APB_TIMER_UNIT_H_
