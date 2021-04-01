@@ -1,12 +1,41 @@
+/*
+ * This is a generated file
+ * 
+ * Copyright 2021 QuickLogic
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#ifndef __APB_TIMER_UNIT_H_
+#define __APB_TIMER_UNIT_H_
+
 //---------------------------------//
 //
 // Module: apb_timer_unit
 //
 //---------------------------------//
 
+#ifndef __IO
+#define __IO volatile
+#endif
+
 typedef struct {
+
+  // Offset = 0x0000
   union {
-    __IO uint32_t CFG_REG_LO;     // Offset = 0x0000
+    __IO uint32_t CFG_REG_LO;
     struct {
       __IO uint32_t  ENABLE_BIT :  1;
       __IO uint32_t  RESET_BIT  :  1;
@@ -22,8 +51,10 @@ typedef struct {
       __IO uint32_t  MODE_64_BIT :  1;
     } CFG_REG_LO_b;
   };
+
+  // Offset = 0x0004
   union {
-    __IO uint32_t CFG_REG_HI;     // Offset = 0x0004
+    __IO uint32_t CFG_REG_HI;
     struct {
       __IO uint32_t  ENABLE_BIT :  1;
       __IO uint32_t  RESET_BIT  :  1;
@@ -39,50 +70,66 @@ typedef struct {
       __IO uint32_t  MODE_64_BIT :  1;
     } CFG_REG_HI_b;
   };
+
+  // Offset = 0x0008
   union {
-    __IO uint32_t TIMER_VAL_LO;     // Offset = 0x0008
+    __IO uint32_t TIMER_VAL_LO;
     struct {
       __IO uint32_t  TIMER_VAL_LO : 32;
     } TIMER_VAL_LO_b;
   };
+
+  // Offset = 0x000c
   union {
-    __IO uint32_t TIMER_VAL_HI;     // Offset = 0x000c
+    __IO uint32_t TIMER_VAL_HI;
     struct {
       __IO uint32_t  TIMER_VAL_HI : 32;
     } TIMER_VAL_HI_b;
   };
+
+  // Offset = 0x0010
   union {
-    __IO uint32_t TIMER_CMP_LO;     // Offset = 0x0010
+    __IO uint32_t TIMER_CMP_LO;
     struct {
       __IO uint32_t  TIMER_CMP_LO : 32;
     } TIMER_CMP_LO_b;
   };
+
+  // Offset = 0x0014
   union {
-    __IO uint32_t TIMER_CMP_HI;     // Offset = 0x0014
+    __IO uint32_t TIMER_CMP_HI;
     struct {
       __IO uint32_t  TIMER_CMP_HI : 32;
     } TIMER_CMP_HI_b;
   };
+
+  // Offset = 0x0018
   union {
-    __IO uint32_t TIMER_START_LO;     // Offset = 0x0018
+    __IO uint32_t TIMER_START_LO;
     struct {
       __IO uint32_t  TIMER_START_LO :  1;
     } TIMER_START_LO_b;
   };
+
+  // Offset = 0x001c
   union {
-    __IO uint32_t TIMER_START_HI;     // Offset = 0x001c
+    __IO uint32_t TIMER_START_HI;
     struct {
       __IO uint32_t  TIMER_START_HI :  1;
     } TIMER_START_HI_b;
   };
+
+  // Offset = 0x0020
   union {
-    __IO uint32_t TIMER_RESET_LO;     // Offset = 0x0020
+    __IO uint32_t TIMER_RESET_LO;
     struct {
       __IO uint32_t  TIMER_RESET_LO :  1;
     } TIMER_RESET_LO_b;
   };
+
+  // Offset = 0x0024
   union {
-    __IO uint32_t TIMER_RESET_HI;     // Offset = 0x0024
+    __IO uint32_t TIMER_RESET_HI;
     struct {
       __IO uint32_t  TIMER_RESET_HI :  1;
     } TIMER_RESET_HI_b;
@@ -169,3 +216,5 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+
+#endif __APB_TIMER_UNIT_H_

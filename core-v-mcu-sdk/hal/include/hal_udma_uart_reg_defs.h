@@ -1,24 +1,57 @@
+/*
+ * This is a generated file
+ * 
+ * Copyright 2021 QuickLogic
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#ifndef __UDMA_UART_H_
+#define __UDMA_UART_H_
+
 //---------------------------------//
 //
 // Module: UDMA_UART
 //
 //---------------------------------//
 
+#ifndef __IO
+#define __IO volatile
+#endif
+
 typedef struct {
+
+  // Offset = 0x0000
   union {
-    __IO uint32_t RX_SADDR;     // Offset = 0x0000
+    __IO uint32_t RX_SADDR;
     struct {
       __IO uint32_t  SADDR      : 12;
     } RX_SADDR_b;
   };
+
+  // Offset = 0x0004
   union {
-    __IO uint32_t RX_SIZE;     // Offset = 0x0004
+    __IO uint32_t RX_SIZE;
     struct {
       __IO uint32_t  SIZE       : 16;
     } RX_SIZE_b;
   };
+
+  // Offset = 0x0008
   union {
-    __IO uint32_t RX_CFG;     // Offset = 0x0008
+    __IO uint32_t RX_CFG;
     struct {
       __IO uint32_t  CONTINUOUS :  1;
       __IO uint32_t             :  3;
@@ -28,20 +61,26 @@ typedef struct {
     } RX_CFG_b;
   };
   __I uint32_t    RESERVED0[1];
+
+  // Offset = 0x0010
   union {
-    __IO uint32_t TX_SADDR;     // Offset = 0x0010
+    __IO uint32_t TX_SADDR;
     struct {
       __IO uint32_t  SADDR      : 12;
     } TX_SADDR_b;
   };
+
+  // Offset = 0x0014
   union {
-    __IO uint32_t TX_SIZE;     // Offset = 0x0014
+    __IO uint32_t TX_SIZE;
     struct {
       __IO uint32_t  SIZE       : 16;
     } TX_SIZE_b;
   };
+
+  // Offset = 0x0018
   union {
-    __IO uint32_t TX_CFG;     // Offset = 0x0018
+    __IO uint32_t TX_CFG;
     struct {
       __IO uint32_t  CONTINUOUS :  1;
       __IO uint32_t             :  3;
@@ -51,15 +90,19 @@ typedef struct {
     } TX_CFG_b;
   };
   __I uint32_t    RESERVED1[1];
+
+  // Offset = 0x0020
   union {
-    __IO uint32_t STATUS;     // Offset = 0x0020
+    __IO uint32_t STATUS;
     struct {
       __IO uint32_t  TX_BUSY    :  1;
       __IO uint32_t  RX_BUSY    :  1;
     } STATUS_b;
   };
+
+  // Offset = 0x0024
   union {
-    __IO uint32_t UART_SETUP;     // Offset = 0x0024
+    __IO uint32_t UART_SETUP;
     struct {
       __IO uint32_t  PARITY_EN  :  1;
       __IO uint32_t  BITS       :  2;
@@ -73,28 +116,36 @@ typedef struct {
       __IO uint32_t  DIV        : 16;
     } UART_SETUP_b;
   };
+
+  // Offset = 0x0028
   union {
-    __IO uint32_t ERROR;     // Offset = 0x0028
+    __IO uint32_t ERROR;
     struct {
       __IO uint32_t  OVERFLOW_ERR :  1;
       __IO uint32_t  PARITY_ERR :  1;
     } ERROR_b;
   };
+
+  // Offset = 0x002c
   union {
-    __IO uint32_t IRQ_EN;     // Offset = 0x002c
+    __IO uint32_t IRQ_EN;
     struct {
       __IO uint32_t  RX_IRQ_EN  :  1;
       __IO uint32_t  ERR_IRQ_EN :  1;
     } IRQ_EN_b;
   };
+
+  // Offset = 0x0030
   union {
-    __IO uint32_t VALID;     // Offset = 0x0030
+    __IO uint32_t VALID;
     struct {
       __IO uint32_t  RX_DATA_VALID :  1;
     } VALID_b;
   };
+
+  // Offset = 0x0034
   union {
-    __IO uint32_t DATA;     // Offset = 0x0034
+    __IO uint32_t DATA;
     struct {
       __IO uint32_t  RX_DATA    :  8;
     } DATA_b;
@@ -179,3 +230,5 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+
+#endif __UDMA_UART_H_

@@ -1,12 +1,41 @@
+/*
+ * This is a generated file
+ * 
+ * Copyright 2021 QuickLogic
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#ifndef __APB_INTERRUPT_CNTRL_H_
+#define __APB_INTERRUPT_CNTRL_H_
+
 //---------------------------------//
 //
 // Module: APB_INTERRUPT_CNTRL
 //
 //---------------------------------//
 
+#ifndef __IO
+#define __IO volatile
+#endif
+
 typedef struct {
+
+  // Offset = 0x0000
   union {
-    __IO uint32_t REG_MASK;     // Offset = 0x0000
+    __IO uint32_t REG_MASK;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -21,8 +50,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_MASK_b;
   };
+
+  // Offset = 0x0004
   union {
-    __IO uint32_t REG_MASK_SET;     // Offset = 0x0004
+    __IO uint32_t REG_MASK_SET;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -37,8 +68,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_MASK_SET_b;
   };
+
+  // Offset = 0x0008
   union {
-    __IO uint32_t REG_MASK_CLEAR;     // Offset = 0x0008
+    __IO uint32_t REG_MASK_CLEAR;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -53,8 +86,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_MASK_CLEAR_b;
   };
+
+  // Offset = 0x000c
   union {
-    __IO uint32_t REG_INT;     // Offset = 0x000c
+    __IO uint32_t REG_INT;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -69,8 +104,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_INT_b;
   };
+
+  // Offset = 0x0010
   union {
-    __IO uint32_t REG_INT_SET;     // Offset = 0x0010
+    __IO uint32_t REG_INT_SET;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -85,8 +122,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_INT_SET_b;
   };
+
+  // Offset = 0x0014
   union {
-    __IO uint32_t REG_INT_CLEAR;     // Offset = 0x0014
+    __IO uint32_t REG_INT_CLEAR;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -101,8 +140,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_INT_CLEAR_b;
   };
+
+  // Offset = 0x0018
   union {
-    __IO uint32_t REG_ACK;     // Offset = 0x0018
+    __IO uint32_t REG_ACK;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -117,8 +158,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_ACK_b;
   };
+
+  // Offset = 0x001c
   union {
-    __IO uint32_t REG_ACK_SET;     // Offset = 0x001c
+    __IO uint32_t REG_ACK_SET;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -133,8 +176,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_ACK_SET_b;
   };
+
+  // Offset = 0x0020
   union {
-    __IO uint32_t REG_ACK_CLEAR;     // Offset = 0x0020
+    __IO uint32_t REG_ACK_CLEAR;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -149,8 +194,10 @@ typedef struct {
       __IO uint32_t  fc_hp_events :  2;
     } REG_ACK_CLEAR_b;
   };
+
+  // Offset = 0x0024
   union {
-    __IO uint32_t REG_FIFO;     // Offset = 0x0024
+    __IO uint32_t REG_FIFO;
     struct {
       __IO uint32_t  EVENT_ID   :  8;
     } REG_FIFO_b;
@@ -377,3 +424,5 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+
+#endif __APB_INTERRUPT_CNTRL_H_

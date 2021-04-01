@@ -1,63 +1,114 @@
+/*
+ * This is a generated file
+ * 
+ * Copyright 2021 QuickLogic
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#ifndef __SOC_CTRL_H_
+#define __SOC_CTRL_H_
+
 //---------------------------------//
 //
 // Module: SOC_CTRL
 //
 //---------------------------------//
 
+#ifndef __IO
+#define __IO volatile
+#endif
+
 typedef struct {
+
+  // Offset = 0x0000
   union {
-    __IO uint32_t INFO;     // Offset = 0x0000
+    __IO uint32_t INFO;
     struct {
       __IO uint32_t  N_CLUSTERS : 16;
       __IO uint32_t  N_CORES    : 16;
     } INFO_b;
   };
   __I uint32_t    RESERVED0[28];
+
+  // Offset = 0x0074
   union {
-    __IO uint32_t JTAGREG;     // Offset = 0x0074
+    __IO uint32_t JTAGREG;
   };
   __I uint32_t    RESERVED1[10];
+
+  // Offset = 0x00a0
   union {
-    __IO uint32_t CORESTATUS;     // Offset = 0x00a0
+    __IO uint32_t CORESTATUS;
     struct {
       __IO uint32_t  STATUS     : 31;
       __IO uint32_t  EOC        :  1;
     } CORESTATUS_b;
   };
   __I uint32_t    RESERVED2[7];
+
+  // Offset = 0x00c0
   union {
-    __IO uint32_t CS_RO;     // Offset = 0x00c0
+    __IO uint32_t CS_RO;
     struct {
       __IO uint32_t  STATUS     : 31;
       __IO uint32_t  EOC        :  1;
     } CS_RO_b;
   };
+
+  // Offset = 0x00c4
   union {
-    __IO uint32_t BOOTSEL;     // Offset = 0x00c4
+    __IO uint32_t BOOTSEL;
   };
+
+  // Offset = 0x00c8
   union {
-    __IO uint32_t CLKSEL;     // Offset = 0x00c8
+    __IO uint32_t CLKSEL;
   };
   __I uint32_t    RESERVED3[3];
+
+  // Offset = 0x00d8
   union {
-    __IO uint32_t CLK_DIV_CLU;     // Offset = 0x00d8
+    __IO uint32_t CLK_DIV_CLU;
   };
   __I uint32_t    RESERVED4[1];
+
+  // Offset = 0x00e0
   union {
-    __IO uint32_t SEL_CLK_DC_FIFO_EFPGA;     // Offset = 0x00e0
+    __IO uint32_t SEL_CLK_DC_FIFO_EFPGA;
   };
+
+  // Offset = 0x00e4
   union {
-    __IO uint32_t CLK_GATING_DC_FIFO_EFPGA;     // Offset = 0x00e4
+    __IO uint32_t CLK_GATING_DC_FIFO_EFPGA;
   };
+
+  // Offset = 0x00e8
   union {
-    __IO uint32_t RESET_TYPE1_EFPGA;     // Offset = 0x00e8
+    __IO uint32_t RESET_TYPE1_EFPGA;
   };
+
+  // Offset = 0x00ec
   union {
-    __IO uint32_t ENABLE_IN_OUT_EFPGA;     // Offset = 0x00ec
+    __IO uint32_t ENABLE_IN_OUT_EFPGA;
   };
   __I uint32_t    RESERVED5[196];
+
+  // Offset = 0x0400
   union {
-    __IO uint32_t IO_CTRL;     // Offset = 0x0400
+    __IO uint32_t IO_CTRL;
     struct {
       __IO uint32_t  MUX        :  2;
       __IO uint32_t             :  6;
@@ -104,3 +155,5 @@ static inline uint32_t regfield_write(uint32_t reg, uint32_t mask, uint32_t lsb,
   reg |= (value & mask) << lsb;
   return reg;
 }
+
+#endif __SOC_CTRL_H_
