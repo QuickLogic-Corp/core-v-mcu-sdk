@@ -35,106 +35,106 @@ typedef struct {
 
   // Offset = 0x0000
   union {
-    __IO uint32_t CFG_REG_LO;
+    __IO uint32_t cfg_reg_lo;
     struct {
-      __IO uint32_t  ENABLE_BIT :  1;
-      __IO uint32_t  RESET_BIT  :  1;
-      __IO uint32_t  IRQ_BIT    :  1;
-      __IO uint32_t  IEM_BIT    :  1;
-      __IO uint32_t  CMP_CLR_BIT :  1;
-      __IO uint32_t  ONE_SHOT_BIT :  1;
-      __IO uint32_t  PRESCALER_EN_BIT :  1;
-      __IO uint32_t  REF_CLK_EN_BIT :  1;
-      __IO uint32_t  PRESCALER_COUNT :  8;
+      __IO uint32_t  enable_bit :  1;
+      __IO uint32_t  reset_bit  :  1;
+      __IO uint32_t  irq_bit    :  1;
+      __IO uint32_t  iem_bit    :  1;
+      __IO uint32_t  cmp_clr_bit :  1;
+      __IO uint32_t  one_shot_bit :  1;
+      __IO uint32_t  prescaler_en_bit :  1;
+      __IO uint32_t  ref_clk_en_bit :  1;
+      __IO uint32_t  prescaler_count :  8;
       __IO uint32_t             : 14;
-      __IO uint32_t  MODE_MTIME_BIT :  1;
-      __IO uint32_t  MODE_64_BIT :  1;
+      __IO uint32_t  mode_mtime_bit :  1;
+      __IO uint32_t  mode_64_bit :  1;
     } CFG_REG_LO_b;
   };
 
   // Offset = 0x0004
   union {
-    __IO uint32_t CFG_REG_HI;
+    __IO uint32_t cfg_reg_hi;
     struct {
-      __IO uint32_t  ENABLE_BIT :  1;
-      __IO uint32_t  RESET_BIT  :  1;
-      __IO uint32_t  IRQ_BIT    :  1;
-      __IO uint32_t  IEM_BIT    :  1;
-      __IO uint32_t  CMP_CLR_BIT :  1;
-      __IO uint32_t  ONE_SHOT_BIT :  1;
-      __IO uint32_t  PRESCALER_EN_BIT :  1;
-      __IO uint32_t  REF_CLK_EN_BIT :  1;
-      __IO uint32_t  PRESCALER_COUNT :  8;
+      __IO uint32_t  enable_bit :  1;
+      __IO uint32_t  reset_bit  :  1;
+      __IO uint32_t  irq_bit    :  1;
+      __IO uint32_t  iem_bit    :  1;
+      __IO uint32_t  cmp_clr_bit :  1;
+      __IO uint32_t  one_shot_bit :  1;
+      __IO uint32_t  prescaler_en_bit :  1;
+      __IO uint32_t  ref_clk_en_bit :  1;
+      __IO uint32_t  prescaler_count :  8;
       __IO uint32_t             : 14;
-      __IO uint32_t  MODE_MTIME_BIT :  1;
-      __IO uint32_t  MODE_64_BIT :  1;
+      __IO uint32_t  mode_mtime_bit :  1;
+      __IO uint32_t  mode_64_bit :  1;
     } CFG_REG_HI_b;
   };
 
   // Offset = 0x0008
   union {
-    __IO uint32_t TIMER_VAL_LO;
+    __IO uint32_t timer_val_lo;
     struct {
-      __IO uint32_t  TIMER_VAL_LO : 32;
+      __IO uint32_t  timer_val_lo : 32;
     } TIMER_VAL_LO_b;
   };
 
   // Offset = 0x000c
   union {
-    __IO uint32_t TIMER_VAL_HI;
+    __IO uint32_t timer_val_hi;
     struct {
-      __IO uint32_t  TIMER_VAL_HI : 32;
+      __IO uint32_t  timer_val_hi : 32;
     } TIMER_VAL_HI_b;
   };
 
   // Offset = 0x0010
   union {
-    __IO uint32_t TIMER_CMP_LO;
+    __IO uint32_t timer_cmp_lo;
     struct {
-      __IO uint32_t  TIMER_CMP_LO : 32;
+      __IO uint32_t  timer_cmp_lo : 32;
     } TIMER_CMP_LO_b;
   };
 
   // Offset = 0x0014
   union {
-    __IO uint32_t TIMER_CMP_HI;
+    __IO uint32_t timer_cmp_hi;
     struct {
-      __IO uint32_t  TIMER_CMP_HI : 32;
+      __IO uint32_t  timer_cmp_hi : 32;
     } TIMER_CMP_HI_b;
   };
 
   // Offset = 0x0018
   union {
-    __IO uint32_t TIMER_START_LO;
+    __IO uint32_t timer_start_lo;
     struct {
-      __IO uint32_t  TIMER_START_LO :  1;
+      __IO uint32_t  timer_start_lo :  1;
     } TIMER_START_LO_b;
   };
 
   // Offset = 0x001c
   union {
-    __IO uint32_t TIMER_START_HI;
+    __IO uint32_t timer_start_hi;
     struct {
-      __IO uint32_t  TIMER_START_HI :  1;
+      __IO uint32_t  timer_start_hi :  1;
     } TIMER_START_HI_b;
   };
 
   // Offset = 0x0020
   union {
-    __IO uint32_t TIMER_RESET_LO;
+    __IO uint32_t timer_reset_lo;
     struct {
-      __IO uint32_t  TIMER_RESET_LO :  1;
+      __IO uint32_t  timer_reset_lo :  1;
     } TIMER_RESET_LO_b;
   };
 
   // Offset = 0x0024
   union {
-    __IO uint32_t TIMER_RESET_HI;
+    __IO uint32_t timer_reset_hi;
     struct {
-      __IO uint32_t  TIMER_RESET_HI :  1;
+      __IO uint32_t  timer_reset_hi :  1;
     } TIMER_RESET_HI_b;
   };
-} apb_timer_unit_t;
+} ApbTimerUnit_t;
 
 
 #define REG_CFG_REG_LO                 0x000

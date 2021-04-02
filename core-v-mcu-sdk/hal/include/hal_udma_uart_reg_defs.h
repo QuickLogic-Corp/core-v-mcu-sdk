@@ -35,122 +35,122 @@ typedef struct {
 
   // Offset = 0x0000
   union {
-    __IO uint32_t RX_SADDR;
+    __IO uint32_t rx_saddr;
     struct {
-      __IO uint32_t  SADDR      : 12;
+      __IO uint32_t  saddr      : 12;
     } RX_SADDR_b;
   };
 
   // Offset = 0x0004
   union {
-    __IO uint32_t RX_SIZE;
+    __IO uint32_t rx_size;
     struct {
-      __IO uint32_t  SIZE       : 16;
+      __IO uint32_t  size       : 16;
     } RX_SIZE_b;
   };
 
   // Offset = 0x0008
   union {
-    __IO uint32_t RX_CFG;
+    __IO uint32_t rx_cfg;
     struct {
-      __IO uint32_t  CONTINUOUS :  1;
+      __IO uint32_t  continuous :  1;
       __IO uint32_t             :  3;
-      __IO uint32_t  EN         :  1;
-      __IO uint32_t  PENDING    :  1;
-      __IO uint32_t  CLR        :  1;
+      __IO uint32_t  en         :  1;
+      __IO uint32_t  pending    :  1;
+      __IO uint32_t  clr        :  1;
     } RX_CFG_b;
   };
-  __I uint32_t    RESERVED0[1];
+  __I uint32_t    unused0[1];
 
   // Offset = 0x0010
   union {
-    __IO uint32_t TX_SADDR;
+    __IO uint32_t tx_saddr;
     struct {
-      __IO uint32_t  SADDR      : 12;
+      __IO uint32_t  saddr      : 12;
     } TX_SADDR_b;
   };
 
   // Offset = 0x0014
   union {
-    __IO uint32_t TX_SIZE;
+    __IO uint32_t tx_size;
     struct {
-      __IO uint32_t  SIZE       : 16;
+      __IO uint32_t  size       : 16;
     } TX_SIZE_b;
   };
 
   // Offset = 0x0018
   union {
-    __IO uint32_t TX_CFG;
+    __IO uint32_t tx_cfg;
     struct {
-      __IO uint32_t  CONTINUOUS :  1;
+      __IO uint32_t  continuous :  1;
       __IO uint32_t             :  3;
-      __IO uint32_t  EN         :  1;
-      __IO uint32_t  PENDING    :  1;
-      __IO uint32_t  CLR        :  1;
+      __IO uint32_t  en         :  1;
+      __IO uint32_t  pending    :  1;
+      __IO uint32_t  clr        :  1;
     } TX_CFG_b;
   };
-  __I uint32_t    RESERVED1[1];
+  __I uint32_t    unused1[1];
 
   // Offset = 0x0020
   union {
-    __IO uint32_t STATUS;
+    __IO uint32_t status;
     struct {
-      __IO uint32_t  TX_BUSY    :  1;
-      __IO uint32_t  RX_BUSY    :  1;
+      __IO uint32_t  tx_busy    :  1;
+      __IO uint32_t  rx_busy    :  1;
     } STATUS_b;
   };
 
   // Offset = 0x0024
   union {
-    __IO uint32_t UART_SETUP;
+    __IO uint32_t uart_setup;
     struct {
-      __IO uint32_t  PARITY_EN  :  1;
-      __IO uint32_t  BITS       :  2;
-      __IO uint32_t  STOP_BITS  :  1;
-      __IO uint32_t  RX_POLLING_EN :  1;
-      __IO uint32_t  RX_CLEAN_FIFO :  1;
+      __IO uint32_t  parity_en  :  1;
+      __IO uint32_t  bits       :  2;
+      __IO uint32_t  stop_bits  :  1;
+      __IO uint32_t  rx_polling_en :  1;
+      __IO uint32_t  rx_clean_fifo :  1;
       __IO uint32_t             :  2;
-      __IO uint32_t  EN_TX      :  1;
-      __IO uint32_t  EN_RX      :  1;
+      __IO uint32_t  en_tx      :  1;
+      __IO uint32_t  en_rx      :  1;
       __IO uint32_t             :  6;
-      __IO uint32_t  DIV        : 16;
+      __IO uint32_t  div        : 16;
     } UART_SETUP_b;
   };
 
   // Offset = 0x0028
   union {
-    __IO uint32_t ERROR;
+    __IO uint32_t error;
     struct {
-      __IO uint32_t  OVERFLOW_ERR :  1;
-      __IO uint32_t  PARITY_ERR :  1;
+      __IO uint32_t  overflow_err :  1;
+      __IO uint32_t  parity_err :  1;
     } ERROR_b;
   };
 
   // Offset = 0x002c
   union {
-    __IO uint32_t IRQ_EN;
+    __IO uint32_t irq_en;
     struct {
-      __IO uint32_t  RX_IRQ_EN  :  1;
-      __IO uint32_t  ERR_IRQ_EN :  1;
+      __IO uint32_t  rx_irq_en  :  1;
+      __IO uint32_t  err_irq_en :  1;
     } IRQ_EN_b;
   };
 
   // Offset = 0x0030
   union {
-    __IO uint32_t VALID;
+    __IO uint32_t valid;
     struct {
-      __IO uint32_t  RX_DATA_VALID :  1;
+      __IO uint32_t  rx_data_valid :  1;
     } VALID_b;
   };
 
   // Offset = 0x0034
   union {
-    __IO uint32_t DATA;
+    __IO uint32_t data;
     struct {
-      __IO uint32_t  RX_DATA    :  8;
+      __IO uint32_t  rx_data    :  8;
     } DATA_b;
   };
-} UDMA_UART_t;
+} UdmaUart_t;
 
 
 #define REG_RX_SADDR                   0x00

@@ -35,79 +35,79 @@ typedef struct {
 
   // Offset = 0x0000
   union {
-    __IO uint32_t RX_SADDR;
+    __IO uint32_t rx_saddr;
     struct {
-      __IO uint32_t  SADDR      : 12;
+      __IO uint32_t  saddr      : 12;
     } RX_SADDR_b;
   };
 
   // Offset = 0x0004
   union {
-    __IO uint32_t RX_SIZE;
+    __IO uint32_t rx_size;
     struct {
-      __IO uint32_t  SIZE       : 16;
+      __IO uint32_t  size       : 16;
     } RX_SIZE_b;
   };
 
   // Offset = 0x0008
   union {
-    __IO uint32_t RX_CFG;
+    __IO uint32_t rx_cfg;
     struct {
-      __IO uint32_t  CONTINUOUS :  1;
+      __IO uint32_t  continuous :  1;
       __IO uint32_t             :  3;
-      __IO uint32_t  EN         :  1;
-      __IO uint32_t  PENDING    :  1;
-      __IO uint32_t  CLR        :  1;
+      __IO uint32_t  en         :  1;
+      __IO uint32_t  pending    :  1;
+      __IO uint32_t  clr        :  1;
     } RX_CFG_b;
   };
-  __I uint32_t    RESERVED0[1];
+  __I uint32_t    unused0[1];
 
   // Offset = 0x0010
   union {
-    __IO uint32_t TX_SADDR;
+    __IO uint32_t tx_saddr;
     struct {
-      __IO uint32_t  SADDR      : 12;
+      __IO uint32_t  saddr      : 12;
     } TX_SADDR_b;
   };
 
   // Offset = 0x0014
   union {
-    __IO uint32_t TX_SIZE;
+    __IO uint32_t tx_size;
     struct {
-      __IO uint32_t  SIZE       : 16;
+      __IO uint32_t  size       : 16;
     } TX_SIZE_b;
   };
 
   // Offset = 0x0018
   union {
-    __IO uint32_t TX_CFG;
+    __IO uint32_t tx_cfg;
     struct {
-      __IO uint32_t  CONTINUOUS :  1;
+      __IO uint32_t  continuous :  1;
       __IO uint32_t             :  3;
-      __IO uint32_t  EN         :  1;
-      __IO uint32_t  PENDING    :  1;
-      __IO uint32_t  CLR        :  1;
+      __IO uint32_t  en         :  1;
+      __IO uint32_t  pending    :  1;
+      __IO uint32_t  clr        :  1;
     } TX_CFG_b;
   };
-  __I uint32_t    RESERVED1[1];
+  __I uint32_t    unused1[1];
 
   // Offset = 0x0020
   union {
-    __IO uint32_t STATUS;
+    __IO uint32_t status;
     struct {
-      __IO uint32_t  BUSY       :  1;
-      __IO uint32_t  AL         :  1;
+      __IO uint32_t  busy       :  1;
+      __IO uint32_t  al         :  1;
     } STATUS_b;
   };
 
   // Offset = 0x0024
   union {
-    __IO uint32_t SETUP;
+    __IO uint32_t setup;
     struct {
-      __IO uint32_t  RESET      :  1;
+      __IO uint32_t  reset      :  1;
     } SETUP_b;
   };
-} UDMA_I2C_t;
+} UdmaI2c_t;
 
 
 #define REG_RX_SADDR                   0x00

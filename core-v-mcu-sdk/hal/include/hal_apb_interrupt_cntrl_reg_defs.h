@@ -35,7 +35,7 @@ typedef struct {
 
   // Offset = 0x0000
   union {
-    __IO uint32_t REG_MASK;
+    __IO uint32_t reg_mask;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -53,7 +53,7 @@ typedef struct {
 
   // Offset = 0x0004
   union {
-    __IO uint32_t REG_MASK_SET;
+    __IO uint32_t reg_mask_set;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -71,7 +71,7 @@ typedef struct {
 
   // Offset = 0x0008
   union {
-    __IO uint32_t REG_MASK_CLEAR;
+    __IO uint32_t reg_mask_clear;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -89,7 +89,7 @@ typedef struct {
 
   // Offset = 0x000c
   union {
-    __IO uint32_t REG_INT;
+    __IO uint32_t reg_int;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -107,7 +107,7 @@ typedef struct {
 
   // Offset = 0x0010
   union {
-    __IO uint32_t REG_INT_SET;
+    __IO uint32_t reg_int_set;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -125,7 +125,7 @@ typedef struct {
 
   // Offset = 0x0014
   union {
-    __IO uint32_t REG_INT_CLEAR;
+    __IO uint32_t reg_int_clear;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -143,7 +143,7 @@ typedef struct {
 
   // Offset = 0x0018
   union {
-    __IO uint32_t REG_ACK;
+    __IO uint32_t reg_ack;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -161,7 +161,7 @@ typedef struct {
 
   // Offset = 0x001c
   union {
-    __IO uint32_t REG_ACK_SET;
+    __IO uint32_t reg_ack_set;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -179,7 +179,7 @@ typedef struct {
 
   // Offset = 0x0020
   union {
-    __IO uint32_t REG_ACK_CLEAR;
+    __IO uint32_t reg_ack_clear;
     struct {
       __IO uint32_t  reserved   :  7;
       __IO uint32_t  timer_lo_event :  1;
@@ -197,12 +197,12 @@ typedef struct {
 
   // Offset = 0x0024
   union {
-    __IO uint32_t REG_FIFO;
+    __IO uint32_t reg_fifo;
     struct {
-      __IO uint32_t  EVENT_ID   :  8;
+      __IO uint32_t  event_id   :  8;
     } REG_FIFO_b;
   };
-} APB_INTERRUPT_CNTRL_t;
+} ApbInterruptCntrl_t;
 
 
 #define REG_REG_MASK                   0x000
