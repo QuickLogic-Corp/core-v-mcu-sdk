@@ -31,6 +31,8 @@
 #define __IO volatile
 #endif
 
+#include "stdint.h"
+
 typedef struct {
 
   // Offset = 0x0000
@@ -39,7 +41,7 @@ typedef struct {
     struct {
       __IO uint32_t  n_clusters : 16;
       __IO uint32_t  n_cores    : 16;
-    } INFO_b;
+    } info_b;
   };
   __I uint32_t    unused0[28];
 
@@ -55,7 +57,7 @@ typedef struct {
     struct {
       __IO uint32_t  status     : 31;
       __IO uint32_t  eoc        :  1;
-    } CORESTATUS_b;
+    } corestatus_b;
   };
   __I uint32_t    unused2[7];
 
@@ -65,7 +67,7 @@ typedef struct {
     struct {
       __IO uint32_t  status     : 31;
       __IO uint32_t  eoc        :  1;
-    } CS_RO_b;
+    } cs_ro_b;
   };
 
   // Offset = 0x00c4
@@ -113,7 +115,7 @@ typedef struct {
       __IO uint32_t  mux        :  2;
       __IO uint32_t             :  6;
       __IO uint32_t  cfg        :  6;
-    } IO_CTRL_b;
+    } io_ctrl_b;
   };
 } SocCtrl_t;
 

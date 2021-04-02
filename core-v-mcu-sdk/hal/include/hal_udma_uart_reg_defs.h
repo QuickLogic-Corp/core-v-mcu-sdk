@@ -31,6 +31,8 @@
 #define __IO volatile
 #endif
 
+#include "stdint.h"
+
 typedef struct {
 
   // Offset = 0x0000
@@ -38,7 +40,7 @@ typedef struct {
     __IO uint32_t rx_saddr;
     struct {
       __IO uint32_t  saddr      : 12;
-    } RX_SADDR_b;
+    } rx_saddr_b;
   };
 
   // Offset = 0x0004
@@ -46,7 +48,7 @@ typedef struct {
     __IO uint32_t rx_size;
     struct {
       __IO uint32_t  size       : 16;
-    } RX_SIZE_b;
+    } rx_size_b;
   };
 
   // Offset = 0x0008
@@ -58,7 +60,7 @@ typedef struct {
       __IO uint32_t  en         :  1;
       __IO uint32_t  pending    :  1;
       __IO uint32_t  clr        :  1;
-    } RX_CFG_b;
+    } rx_cfg_b;
   };
   __I uint32_t    unused0[1];
 
@@ -67,7 +69,7 @@ typedef struct {
     __IO uint32_t tx_saddr;
     struct {
       __IO uint32_t  saddr      : 12;
-    } TX_SADDR_b;
+    } tx_saddr_b;
   };
 
   // Offset = 0x0014
@@ -75,7 +77,7 @@ typedef struct {
     __IO uint32_t tx_size;
     struct {
       __IO uint32_t  size       : 16;
-    } TX_SIZE_b;
+    } tx_size_b;
   };
 
   // Offset = 0x0018
@@ -87,7 +89,7 @@ typedef struct {
       __IO uint32_t  en         :  1;
       __IO uint32_t  pending    :  1;
       __IO uint32_t  clr        :  1;
-    } TX_CFG_b;
+    } tx_cfg_b;
   };
   __I uint32_t    unused1[1];
 
@@ -97,7 +99,7 @@ typedef struct {
     struct {
       __IO uint32_t  tx_busy    :  1;
       __IO uint32_t  rx_busy    :  1;
-    } STATUS_b;
+    } status_b;
   };
 
   // Offset = 0x0024
@@ -114,7 +116,7 @@ typedef struct {
       __IO uint32_t  en_rx      :  1;
       __IO uint32_t             :  6;
       __IO uint32_t  div        : 16;
-    } UART_SETUP_b;
+    } uart_setup_b;
   };
 
   // Offset = 0x0028
@@ -123,7 +125,7 @@ typedef struct {
     struct {
       __IO uint32_t  overflow_err :  1;
       __IO uint32_t  parity_err :  1;
-    } ERROR_b;
+    } error_b;
   };
 
   // Offset = 0x002c
@@ -132,7 +134,7 @@ typedef struct {
     struct {
       __IO uint32_t  rx_irq_en  :  1;
       __IO uint32_t  err_irq_en :  1;
-    } IRQ_EN_b;
+    } irq_en_b;
   };
 
   // Offset = 0x0030
@@ -140,7 +142,7 @@ typedef struct {
     __IO uint32_t valid;
     struct {
       __IO uint32_t  rx_data_valid :  1;
-    } VALID_b;
+    } valid_b;
   };
 
   // Offset = 0x0034
@@ -148,7 +150,7 @@ typedef struct {
     __IO uint32_t data;
     struct {
       __IO uint32_t  rx_data    :  8;
-    } DATA_b;
+    } data_b;
   };
 } UdmaUart_t;
 

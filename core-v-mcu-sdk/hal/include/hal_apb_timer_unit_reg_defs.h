@@ -31,6 +31,8 @@
 #define __IO volatile
 #endif
 
+#include "stdint.h"
+
 typedef struct {
 
   // Offset = 0x0000
@@ -49,7 +51,7 @@ typedef struct {
       __IO uint32_t             : 14;
       __IO uint32_t  mode_mtime_bit :  1;
       __IO uint32_t  mode_64_bit :  1;
-    } CFG_REG_LO_b;
+    } cfg_reg_lo_b;
   };
 
   // Offset = 0x0004
@@ -68,7 +70,7 @@ typedef struct {
       __IO uint32_t             : 14;
       __IO uint32_t  mode_mtime_bit :  1;
       __IO uint32_t  mode_64_bit :  1;
-    } CFG_REG_HI_b;
+    } cfg_reg_hi_b;
   };
 
   // Offset = 0x0008
@@ -76,7 +78,7 @@ typedef struct {
     __IO uint32_t timer_val_lo;
     struct {
       __IO uint32_t  timer_val_lo : 32;
-    } TIMER_VAL_LO_b;
+    } timer_val_lo_b;
   };
 
   // Offset = 0x000c
@@ -84,7 +86,7 @@ typedef struct {
     __IO uint32_t timer_val_hi;
     struct {
       __IO uint32_t  timer_val_hi : 32;
-    } TIMER_VAL_HI_b;
+    } timer_val_hi_b;
   };
 
   // Offset = 0x0010
@@ -92,7 +94,7 @@ typedef struct {
     __IO uint32_t timer_cmp_lo;
     struct {
       __IO uint32_t  timer_cmp_lo : 32;
-    } TIMER_CMP_LO_b;
+    } timer_cmp_lo_b;
   };
 
   // Offset = 0x0014
@@ -100,7 +102,7 @@ typedef struct {
     __IO uint32_t timer_cmp_hi;
     struct {
       __IO uint32_t  timer_cmp_hi : 32;
-    } TIMER_CMP_HI_b;
+    } timer_cmp_hi_b;
   };
 
   // Offset = 0x0018
@@ -108,7 +110,7 @@ typedef struct {
     __IO uint32_t timer_start_lo;
     struct {
       __IO uint32_t  timer_start_lo :  1;
-    } TIMER_START_LO_b;
+    } timer_start_lo_b;
   };
 
   // Offset = 0x001c
@@ -116,7 +118,7 @@ typedef struct {
     __IO uint32_t timer_start_hi;
     struct {
       __IO uint32_t  timer_start_hi :  1;
-    } TIMER_START_HI_b;
+    } timer_start_hi_b;
   };
 
   // Offset = 0x0020
@@ -124,7 +126,7 @@ typedef struct {
     __IO uint32_t timer_reset_lo;
     struct {
       __IO uint32_t  timer_reset_lo :  1;
-    } TIMER_RESET_LO_b;
+    } timer_reset_lo_b;
   };
 
   // Offset = 0x0024
@@ -132,7 +134,7 @@ typedef struct {
     __IO uint32_t timer_reset_hi;
     struct {
       __IO uint32_t  timer_reset_hi :  1;
-    } TIMER_RESET_HI_b;
+    } timer_reset_hi_b;
   };
 } ApbTimerUnit_t;
 

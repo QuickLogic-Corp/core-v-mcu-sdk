@@ -31,6 +31,8 @@
 #define __IO volatile
 #endif
 
+#include "stdint.h"
+
 typedef struct {
 
   // Offset = 0x0000
@@ -38,7 +40,7 @@ typedef struct {
     __IO uint32_t reg_cg;
     struct {
       __IO uint32_t  periph_clk_enable : 32;
-    } REG_CG_b;
+    } reg_cg_b;
   };
 
   // Offset = 0x0004
@@ -49,7 +51,7 @@ typedef struct {
       __IO uint32_t  cmp_event1 :  8;
       __IO uint32_t  cmp_event2 :  8;
       __IO uint32_t  cmp_event3 :  8;
-    } REG_CFG_EVT_b;
+    } reg_cfg_evt_b;
   };
 
   // Offset = 0x0008
@@ -57,7 +59,7 @@ typedef struct {
     __IO uint32_t reg_rst;
     struct {
       __IO uint32_t  periph_reset : 32;
-    } REG_RST_b;
+    } reg_rst_b;
   };
 } UdmaCtrl_t;
 

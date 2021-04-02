@@ -31,6 +31,8 @@
 #define __IO volatile
 #endif
 
+#include "stdint.h"
+
 typedef struct {
 
   // Offset = 0x0000
@@ -48,7 +50,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_MASK_b;
+    } reg_mask_b;
   };
 
   // Offset = 0x0004
@@ -66,7 +68,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_MASK_SET_b;
+    } reg_mask_set_b;
   };
 
   // Offset = 0x0008
@@ -84,7 +86,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_MASK_CLEAR_b;
+    } reg_mask_clear_b;
   };
 
   // Offset = 0x000c
@@ -102,7 +104,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_INT_b;
+    } reg_int_b;
   };
 
   // Offset = 0x0010
@@ -120,7 +122,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_INT_SET_b;
+    } reg_int_set_b;
   };
 
   // Offset = 0x0014
@@ -138,7 +140,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_INT_CLEAR_b;
+    } reg_int_clear_b;
   };
 
   // Offset = 0x0018
@@ -156,7 +158,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_ACK_b;
+    } reg_ack_b;
   };
 
   // Offset = 0x001c
@@ -174,7 +176,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_ACK_SET_b;
+    } reg_ack_set_b;
   };
 
   // Offset = 0x0020
@@ -192,7 +194,7 @@ typedef struct {
       __IO uint32_t  unused1    :  5;
       __IO uint32_t  fc_err_events :  1;
       __IO uint32_t  fc_hp_events :  2;
-    } REG_ACK_CLEAR_b;
+    } reg_ack_clear_b;
   };
 
   // Offset = 0x0024
@@ -200,7 +202,7 @@ typedef struct {
     __IO uint32_t reg_fifo;
     struct {
       __IO uint32_t  event_id   :  8;
-    } REG_FIFO_b;
+    } reg_fifo_b;
   };
 } ApbInterruptCntrl_t;
 
