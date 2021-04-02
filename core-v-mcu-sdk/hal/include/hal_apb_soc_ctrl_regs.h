@@ -35,87 +35,87 @@ typedef struct {
 
   // Offset = 0x0000
   union {
-    __IO uint32_t info;
+    __IO uint32_t INFO;
     struct {
-      __IO uint32_t  n_clusters : 16;
-      __IO uint32_t  n_cores    : 16;
-    } info_b;
+      __IO uint32_t  N_CLUSTERS : 16;
+      __IO uint32_t  N_CORES    : 16;
+    } INFO_b;
   };
-  __I uint32_t    reserved0[28];
+  __I uint32_t    RESERVED0[28];
 
   // Offset = 0x0074
   union {
-    __IO uint32_t jtagreg;
+    __IO uint32_t JTAGREG;
   };
-  __I uint32_t    reserved1[10];
+  __I uint32_t    RESERVED1[10];
 
   // Offset = 0x00a0
   union {
-    __IO uint32_t corestatus;
+    __IO uint32_t CORESTATUS;
     struct {
-      __IO uint32_t  status     : 31;
-      __IO uint32_t  eoc        :  1;
-    } corestatus_b;
+      __IO uint32_t  STATUS     : 31;
+      __IO uint32_t  EOC        :  1;
+    } CORESTATUS_b;
   };
-  __I uint32_t    reserved2[7];
+  __I uint32_t    RESERVED2[7];
 
   // Offset = 0x00c0
   union {
-    __IO uint32_t cs_ro;
+    __IO uint32_t CS_RO;
     struct {
-      __IO uint32_t  status     : 31;
-      __IO uint32_t  eoc        :  1;
-    } cs_ro_b;
+      __IO uint32_t  STATUS     : 31;
+      __IO uint32_t  EOC        :  1;
+    } CS_RO_b;
   };
 
   // Offset = 0x00c4
   union {
-    __IO uint32_t bootsel;
+    __IO uint32_t BOOTSEL;
   };
 
   // Offset = 0x00c8
   union {
-    __IO uint32_t clksel;
+    __IO uint32_t CLKSEL;
   };
-  __I uint32_t    reserved3[3];
+  __I uint32_t    RESERVED3[3];
 
   // Offset = 0x00d8
   union {
-    __IO uint32_t clk_div_clu;
+    __IO uint32_t CLK_DIV_CLU;
   };
-  __I uint32_t    reserved4[1];
+  __I uint32_t    RESERVED4[1];
 
   // Offset = 0x00e0
   union {
-    __IO uint32_t sel_clk_dc_fifo_efpga;
+    __IO uint32_t SEL_CLK_DC_FIFO_EFPGA;
   };
 
   // Offset = 0x00e4
   union {
-    __IO uint32_t clk_gating_dc_fifo_efpga;
+    __IO uint32_t CLK_GATING_DC_FIFO_EFPGA;
   };
 
   // Offset = 0x00e8
   union {
-    __IO uint32_t reset_type1_efpga;
+    __IO uint32_t RESET_TYPE1_EFPGA;
   };
 
   // Offset = 0x00ec
   union {
-    __IO uint32_t enable_in_out_efpga;
+    __IO uint32_t ENABLE_IN_OUT_EFPGA;
   };
-  __I uint32_t    reserved5[196];
+  __I uint32_t    RESERVED5[196];
 
   // Offset = 0x0400
   union {
-    __IO uint32_t io_ctrl;
+    __IO uint32_t IO_CTRL;
     struct {
-      __IO uint32_t  mux        :  2;
+      __IO uint32_t  MUX        :  2;
       __IO uint32_t             :  6;
-      __IO uint32_t  cfg        :  6;
-    } io_ctrl_b;
+      __IO uint32_t  CFG        :  6;
+    } IO_CTRL_b;
   };
-} SocCtrl_t;
+} SOC_CTRL_t;
 
 
 #define REG_INFO                       0x0000

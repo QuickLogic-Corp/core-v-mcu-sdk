@@ -35,31 +35,31 @@ typedef struct {
 
   // Offset = 0x0000
   union {
-    __IO uint32_t reg_cg;
+    __IO uint32_t REG_CG;
     struct {
-      __IO uint32_t  periph_clk_enable : 32;
-    } reg_cg_b;
+      __IO uint32_t  PERIPH_CLK_ENABLE : 32;
+    } REG_CG_b;
   };
 
   // Offset = 0x0004
   union {
-    __IO uint32_t reg_cfg_evt;
+    __IO uint32_t REG_CFG_EVT;
     struct {
-      __IO uint32_t  cmp_event0 :  8;
-      __IO uint32_t  cmp_event1 :  8;
-      __IO uint32_t  cmp_event2 :  8;
-      __IO uint32_t  cmp_event3 :  8;
-    } reg_cfg_evt_b;
+      __IO uint32_t  CMP_EVENT0 :  8;
+      __IO uint32_t  CMP_EVENT1 :  8;
+      __IO uint32_t  CMP_EVENT2 :  8;
+      __IO uint32_t  CMP_EVENT3 :  8;
+    } REG_CFG_EVT_b;
   };
 
   // Offset = 0x0008
   union {
-    __IO uint32_t reg_rst;
+    __IO uint32_t REG_RST;
     struct {
-      __IO uint32_t  periph_reset : 32;
-    } reg_rst_b;
+      __IO uint32_t  PERIPH_RESET : 32;
+    } REG_RST_b;
   };
-} UdmaCtrl_t;
+} UDMA_CTRL_t;
 
 
 #define REG_REG_CG                     0x000
