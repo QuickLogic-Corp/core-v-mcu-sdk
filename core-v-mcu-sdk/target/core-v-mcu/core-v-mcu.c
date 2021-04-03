@@ -19,10 +19,12 @@
 
 #include <stdint.h>
 #include <assert.h>
-#include <target/core-v-mcu/include/core_pulp_cluster.h>
 
 #include <FreeRTOS.h>
 #include "FreeRTOSConfig.h"
+
+#include <target/core-v-mcu/include/core_pulp_cluster.h>
+#include <target/core-v-mcu/include/core-v-mcu-config.h>
 
 //#include "pmsis/implem/drivers/fc_event/fc_event.h"
 #include "hal/include/hal_fc_event.h"
@@ -95,6 +97,10 @@ for (int i = 0 ; i < 32 ; i ++) isr_table[i] = undefined_handler;
 	irq_clint_enable();
 
 	/* TODO: enable uart */
+	for (uint8_t id = 0; id != N_UART; id++) {
+			udma_uart_open(id, 115200);
+		}
+
 }
 
 void system_core_clock_update(void)
