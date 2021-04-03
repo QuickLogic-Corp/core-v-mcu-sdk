@@ -178,11 +178,11 @@ typedef struct {
 #define REG_CLK_GATING_DC_FIFO_EFPGA   0x00E4
 #define REG_RESET_TYPE1_EFPGA          0x00E8
 #define REG_ENABLE_IN_OUT_EFPGA        0x00EC
-#define REG_IO_CTRL[48]                0x0400
-#define   REG_IO_CTRL[48]_CFG_LSB                  8
-#define   REG_IO_CTRL[48]_CFG_MASK                 0x3f
-#define   REG_IO_CTRL[48]_MUX_LSB                  0
-#define   REG_IO_CTRL[48]_MUX_MASK                 0x3
+#define REG_IO_CTRL                    0x0400
+#define   REG_IO_CTRL_CFG_LSB                      8
+#define   REG_IO_CTRL_CFG_MASK                     0x3f
+#define   REG_IO_CTRL_MUX_LSB                      0
+#define   REG_IO_CTRL_MUX_MASK                     0x3
 
 #ifndef __REGFIELD_OPS_
 #define __REGFIELD_OPS_
