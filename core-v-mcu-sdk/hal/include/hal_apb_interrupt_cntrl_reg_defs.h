@@ -31,6 +31,14 @@
 #define __IO volatile
 #endif
 
+#ifndef __I
+#define __I volatile
+#endif
+
+#ifndef __O
+#define __O volatile
+#endif
+
 #include "stdint.h"
 
 typedef struct {
