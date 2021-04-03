@@ -34,8 +34,6 @@
 #include "FreeRTOS.h"
 #include "portmacro.h"
 
-#include "periph-tasks/include/write_uart_task.h"
-
 /*
  * FIXME: I want to include this:
  *    #include "core_m4.h"

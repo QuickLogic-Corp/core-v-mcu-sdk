@@ -1,7 +1,6 @@
 
 
 #include "target/core-v-mcu/include/core-v-mcu-config.h"
-#include <periph-tasks/include/write_uart_task.h>
 #include <string.h>
 #include "hal/include/hal_fc_event.h"
 #include "hal/include/hal_udma_ctrl_reg_defs.h"
@@ -11,7 +10,6 @@
 #include "FreeRTOS.h"
 #include "semphr.h"
 #include "target/core-v-mcu/include/core-v-mcu-config.h"
-#include "periph-tasks/include/write_uart_task.h"
 #include "drivers/include/udma_uart_driver.h"
 
 SemaphoreHandle_t  uart_semaphores_rx[N_UART];
