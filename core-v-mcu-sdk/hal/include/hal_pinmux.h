@@ -1,8 +1,5 @@
-#ifndef HAL_INCLUDE_HAL_PINMUX_H_
-#define HAL_INCLUDE_HAL_PINMUX_H_
-
 /*
- * Copyright (C) 2020 ETH Zurich and University of Bologna
+ * Copyright 2021 QuickLogic
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,29 +16,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/* Driver to control and configure pad mux */
-
-/* Author: Robert Balas (balasr@iis.ee.ethz.ch) */
-
 #include <stdint.h>
 
-#include "../../target/core-v-mcu/include/pulp_io.h"
-#include "hal/include/hal_apb_soc.h"
-#include "target/core-v-mcu/include/core-v-mcu-pulp-mem-map.h"
+#ifndef HAL_INCLUDE_HAL_PINMUX_H_
+#define HAL_INCLUDE_HAL_PINMUX_H_
 
-#define PINMUX_FUNC_A 0
-#define PINMUX_FUNC_B 1
-#define PINMUX_FUNC_C 2
-#define PINMUX_FUNC_D 3
-/* This doesn't exist on PULP */
-#define PINMUX_FUNC_E 4
-#define PINMUX_FUNC_F 5
-#define PINMUX_FUNC_G 6
-#define PINMUX_FUNC_H 7
-
-int pinmux_pin_set(int pin, uint32_t func);
-
-int pinmux_pin_get(int pin, uint32_t *func);
-
+void hal_setpinmux(uint8_t io_num, uint8_t mux_sel);
+uint8_t hal_getpinmux(uint8_t io_num);
 
 #endif /* HAL_INCLUDE_HAL_PINMUX_H_ */

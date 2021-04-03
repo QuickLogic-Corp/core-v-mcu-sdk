@@ -37,8 +37,8 @@
 #include <assert.h>
 
 #include "../../target/core-v-mcu/include/pulp_io.h"
+#include "hal_pinmux1.h"
 #include "target/core-v-mcu/include/core-v-mcu-pulp-mem-map.h"
-#include "hal/include/hal_pinmux.h"
 
 /* TODO: static assert on expected register sequence */
 //

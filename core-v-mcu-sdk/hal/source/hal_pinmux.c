@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 ETH Zurich and University of Bologna
+ * Copyright 2021 QuickLogic
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,43 +14,26 @@
  * limitations under the License.
  *
  * SPDX-License-Identifier: Apache-2.0
- * Author: Robert Balas (balasr@iis.ee.ethz.ch)
  */
-
-/* Driver to control and configure pad mux */
-
-#include <stdint.h>
-#include <assert.h>
-#include <target/core-v-mcu/include/pulp_io.h>
-
-#include "target/core-v-mcu/include/core-v-mcu-pulp-mem-map.h"
-#include "hal/include/hal_apb_soc.h"
-#include "hal/include/hal_pinmux.h"
-
-/* TODO: we only support pin 0-31 */
-
-int pinmux_pin_set(int pin, uint32_t func)
-{
-	assert(0 <= pin && pin < 32);
-
-	uintptr_t padfun_reg =
-		((pin & 0xf) >> 4) * 4 +
-		(PULP_APB_SOC_CTRL_ADDR + APB_SOC_PADFUN0_OFFSET);
-	uint32_t padfun_shift = (pin & 0x7) << 1; /* 16 pads a 2 bits per reg */
-	writew((func & 0x3) << padfun_shift, padfun_reg);
-
-	return 0;
-}
-
-int pinmux_pin_get(int pin, uint32_t *func)
-{
-	assert(0 <= pin && pin < 32);
-
-	uintptr_t padfun_reg =
-		((pin & 0xf) >> 4) * 4 +
-		(PULP_APB_SOC_CTRL_ADDR + APB_SOC_PADFUN0_OFFSET);
-	uint32_t padfun_shift = (pin & 0x7) << 1; /* 16 pads a 2 bits per reg */
-	uint32_t padfunval = readw(padfun_reg);
-	*func = (padfunval >> padfun_shift) & 0x3;
-	return 0;
-}
+ 
+ #include "FreeRTOS.h"
+ #include "FreeRTOSConfig.h"
+ #include "kernel/include/task.h"		// Needed for configASSERT
+ 
+ #include "target/core-v-mcu/include/core-v-mcu-config.h"
+ #include "hal/include/hal_apb_soc_ctrl_regs.h"
+ #include "hal/include/hal_pinmux.h"
+ 
+ void hal_setpinmux(uint8_t io_num, uint8_t mux_sel) {
+ 	SocCtrl_t*		psoc_ctrl = SOC_CTRL_START_ADDR;
+ 	
+ 	configASSERT (io_num < N_IO);
+	psoc_ctrl->io_ctrl_b[io_num].mux = mux_sel;
+ }
+ 
+ uint8_t hal_getpinmux(uint8_t io_num) {
+ 	SocCtrl_t*		psoc_ctrl = SOC_CTRL_START_ADDR;
+ 	
+ 	configASSERT (io_num < N_IO);
+	return psoc_ctrl->io_ctrl_b[io_num].mux;
+ }
