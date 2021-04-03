@@ -20,6 +20,7 @@
 #define __UDMA_UART_DRIVER_H_
 
 #include "stdint.h"
+
 #include "hal/include/hal_udma_ctrl_reg_defs.h"
 
 typedef enum {

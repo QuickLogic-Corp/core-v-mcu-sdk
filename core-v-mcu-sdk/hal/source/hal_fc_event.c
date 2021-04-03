@@ -78,12 +78,10 @@ void pi_fc_event_handler_clear(uint32_t event_id)
 	fc_event_semaphores[event_id] = NULL;
 }
 
-//static signed BaseType_t xHigherPriorityTaskWoken;
-static uint32_t xHigherPriorityTaskWoken;
 /* TODO: Use Eric's FIRQ ABI */
 __attribute__((section(".text"))) void fc_soc_event_handler(void)
 {
-	//static signed BaseType_t xHigherPriorityTaskWoken;
+	static BaseType_t xHigherPriorityTaskWoken;
 	/* Pop one event element from the FIFO */
 	/* TODO: don't use it like this */
 	__asm volatile( "csrs mie, %0" :: "r"(0x800) );

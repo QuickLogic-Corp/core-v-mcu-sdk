@@ -28,16 +28,18 @@ uint16_t udma_uart_open (uint8_t uart_id, uint32_t xbaudrate) {
 	/* Enable reset and enable uart clock */
 	pudma_ctrl->reg_rst |= (UDMA_CTRL_UART0_CLKEN << uart_id);
 	pudma_ctrl->reg_cg |= (UDMA_CTRL_UART0_CLKEN << uart_id);
+
 	/* Set semaphore */
-	SemaphoreHandle_t xSemaphoreHandle;
-	xSemaphoreHandle = xSemaphoreCreateBinary();
-	xSemaphoreGive(xSemaphoreHandle);
-	uart_semaphores_rx[uart_id] = xSemaphoreHandle;
+	SemaphoreHandle_t shSemaphoreHandle;		// FreeRTOS.h has a define for xSemaphoreHandle, so can't use that
+	shSemaphoreHandle = xSemaphoreCreateBinary();
+	xSemaphoreGive(shSemaphoreHandle);
+	uart_semaphores_rx[uart_id] = shSemaphoreHandle;
 	configASSERT(uart_semaphores_rx[uart_id]);
-	xSemaphoreHandle = xSemaphoreCreateBinary();
-	xSemaphoreGive(xSemaphoreHandle);
-	uart_semaphores_tx[uart_id] = xSemaphoreHandle;
+	shSemaphoreHandle = xSemaphoreCreateBinary();
+	xSemaphoreGive(shSemaphoreHandle);
+	uart_semaphores_tx[uart_id] = shSemaphoreHandle;
 	configASSERT(uart_semaphores_tx[uart_id]);
+
 	/* Set handlers. */
 	pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_RX(uart_id), NULL, uart_semaphores_rx[uart_id]);
 	pi_fc_event_handler_set(SOC_EVENT_UDMA_UART_TX(uart_id), NULL, uart_semaphores_tx[uart_id]);
@@ -58,18 +60,16 @@ uint16_t udma_uart_open (uint8_t uart_id, uint32_t xbaudrate) {
 
 uint16_t udma_uart_writeraw(uint8_t uart_id, uint16_t write_len, uint8_t* write_buffer) {
 	UdmaUart_t*				puart = (UdmaUart_t*)(UDMA_CH_ADDR_UART + uart_id * UDMA_CH_SIZE);
-	int xv = 0;
-	int xxv;
 
-	SemaphoreHandle_t xSemaphoreHandle = uart_semaphores_tx[uart_id];
-	if( xSemaphoreTake( xSemaphoreHandle, 1000000 ) != pdTRUE ) {
+	SemaphoreHandle_t shSemaphoreHandle = uart_semaphores_tx[uart_id];
+	if( xSemaphoreTake( shSemaphoreHandle, 1000000 ) != pdTRUE ) {
 			return 1;
 		}
 
 	while (puart->status_b.tx_busy) {  // ToDo: Why is this necessary?  Thought the semaphore should have protected
 	}
 
-	puart->tx_saddr = write_buffer;
+	puart->tx_saddr = (uint32_t)write_buffer;
 	puart->tx_size = write_len;
 	puart->tx_cfg_b.en = 1; //enable the transfer
 

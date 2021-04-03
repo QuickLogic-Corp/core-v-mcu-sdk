@@ -384,7 +384,7 @@ int pi_cl_uart_write_byte(pi_device_t *device, uint8_t *byte, pi_cl_uart_req_t *
  *
  * \param req            Request structure used for termination.
  */
-static inline void pi_cl_uart_write_wait(pi_cl_uart_req_t *req);
+//static inline void pi_cl_uart_write_wait(pi_cl_uart_req_t *req);
 
 /**
  * \brief Read a byte from an UART from cluster side.
@@ -427,7 +427,7 @@ int pi_cl_uart_read_byte(pi_device_t *device, uint8_t *byte, pi_cl_uart_req_t *r
  *
  * \param req            Request structure used for termination.
  */
-static inline void pi_cl_uart_read_wait(pi_cl_uart_req_t *req);
+//static inline void pi_cl_uart_read_wait(pi_cl_uart_req_t *req);
 
 /**
  * @}
