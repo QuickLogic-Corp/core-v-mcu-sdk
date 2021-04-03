@@ -43,13 +43,34 @@ typedef struct {
       __IO uint32_t  n_cores    : 16;
     } info_b;
   };
-  __I uint32_t    unused0[28];
+  __I uint32_t    unused0[2];
+
+  // Offset = 0x000c
+  union {
+    __IO uint32_t build_date;
+    struct {
+      __IO uint32_t  day        :  8;
+      __IO uint32_t  month      :  8;
+      __IO uint32_t  year       : 16;
+    } build_date_b;
+  };
+
+  // Offset = 0x0010
+  union {
+    __IO uint32_t build_time;
+    struct {
+      __IO uint32_t  seconds    :  8;
+      __IO uint32_t  minutes    :  8;
+      __IO uint32_t  hour       :  8;
+    } build_time_b;
+  };
+  __I uint32_t    unused1[24];
 
   // Offset = 0x0074
   union {
     __IO uint32_t jtagreg;
   };
-  __I uint32_t    unused1[10];
+  __I uint32_t    unused2[10];
 
   // Offset = 0x00a0
   union {
@@ -59,7 +80,7 @@ typedef struct {
       __IO uint32_t  eoc        :  1;
     } corestatus_b;
   };
-  __I uint32_t    unused2[7];
+  __I uint32_t    unused3[7];
 
   // Offset = 0x00c0
   union {
@@ -79,13 +100,13 @@ typedef struct {
   union {
     __IO uint32_t clksel;
   };
-  __I uint32_t    unused3[3];
+  __I uint32_t    unused4[3];
 
   // Offset = 0x00d8
   union {
     __IO uint32_t clk_div_clu;
   };
-  __I uint32_t    unused4[1];
+  __I uint32_t    unused5[1];
 
   // Offset = 0x00e0
   union {
@@ -106,7 +127,7 @@ typedef struct {
   union {
     __IO uint32_t enable_in_out_efpga;
   };
-  __I uint32_t    unused5[196];
+  __I uint32_t    unused6[196];
 
   // Offset = 0x0400
   union {
@@ -125,6 +146,20 @@ typedef struct {
 #define   REG_INFO_N_CORES_MASK                    0xffff
 #define   REG_INFO_N_CLUSTERS_LSB                  0
 #define   REG_INFO_N_CLUSTERS_MASK                 0xffff
+#define REG_BUILD_DATE                 0x000C
+#define   REG_BUILD_DATE_YEAR_LSB                  16
+#define   REG_BUILD_DATE_YEAR_MASK                 0xffff
+#define   REG_BUILD_DATE_MONTH_LSB                 8
+#define   REG_BUILD_DATE_MONTH_MASK                0xff
+#define   REG_BUILD_DATE_DAY_LSB                   0
+#define   REG_BUILD_DATE_DAY_MASK                  0xff
+#define REG_BUILD_TIME                 0x0010
+#define   REG_BUILD_TIME_HOUR_LSB                  16
+#define   REG_BUILD_TIME_HOUR_MASK                 0xff
+#define   REG_BUILD_TIME_MINUTES_LSB               8
+#define   REG_BUILD_TIME_MINUTES_MASK              0xff
+#define   REG_BUILD_TIME_SECONDS_LSB               0
+#define   REG_BUILD_TIME_SECONDS_MASK              0xff
 #define REG_JTAGREG                    0x0074
 #define REG_CORESTATUS                 0x00A0
 #define   REG_CORESTATUS_EOC_LSB                   31
