@@ -97,9 +97,9 @@ for (int i = 0 ; i < 32 ; i ++) isr_table[i] = undefined_handler;
 	irq_clint_enable();
 
 	/* TODO: enable uart */
-	for (uint8_t id = 0; id != N_UART; id++) {
-			udma_uart_open(id, 115200);
-		}
+//	for (uint8_t id = 0; id != N_UART; id++) {
+//			udma_uart_open(id, 115200);
+//		}
 
 }
 
