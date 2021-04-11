@@ -1,4 +1,4 @@
-# core-v-mcu-sdk
+# core-v-mcu-sdk {DEPRECATED if favor of core-v-mcu-cli-test}
 Eclipse+FreeRTOS SDK for core-v-mcu
 
 ## Background
